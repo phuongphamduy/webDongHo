@@ -110,7 +110,7 @@
 					<span class="cart-sum-label">Tổng tiền</span> <span
 						class="cart-sum-price" style="color: red; font-weight: 700;"> <fmt:formatNumber value="${sum }" type="currency" /> </span>
 				</p>
-				<a href="/" class="btn btn-primary">Thanh toán</a>
+				<a href="/pay" class="btn btn-primary">Thanh toán</a>
 			</div>
 		</div>
 

@@ -42,7 +42,7 @@ public class IndexController {
 			model.addAttribute("sign", "Đăng xuất"); 
 			model.addAttribute("link", "out");
 			int count = 0;
-			for(OrderDetail od : ddao.findAllByUsername(acc.getUsername())) {
+			for(OrderDetail od : ddao.findAllByUsernameA(acc.getUsername())) {
 				count++;
 			}
 			model.addAttribute("count", count);
@@ -65,7 +65,7 @@ public class IndexController {
 			model.addAttribute("sign", "Đăng xuất"); 
 			model.addAttribute("link", "out");
 			int count = 0;
-			for(OrderDetail od : ddao.findAllByUsername(acc.getUsername())) {
+			for(OrderDetail od : ddao.findAllByUsernameA(acc.getUsername())) {
 				count++;
 			}
 			model.addAttribute("count", count);
