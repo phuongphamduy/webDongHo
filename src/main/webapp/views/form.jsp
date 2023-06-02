@@ -87,42 +87,34 @@
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title form-heading">Thông tin người mua</h5>
-							<form>
+							<form action="/success" method="post">
 								<div class="row form-controll">
 									<div class="col">
-										<label for="" class="form-label">Họ</label> <input type="text"
-											class="form-control" placeholder="Họ">
-									</div>
-									<div class="col">
-										<label for="" class="form-label">Tên</label> <input
-											type="text" class="form-control" placeholder="Tên">
+										<label for="" class="form-label">Họ và tên</label> <input
+											type="text" class="form-control" name="fullname" value="${user.fullname }" placeholder="Họ và tên">
 									</div>
 								</div>
 								<div class="row form-controll">
 									<div class="col">
 										<label for="" class="form-label">Email</label> <input
-											type="email" class="form-control" placeholder="Email">
+											type="email" name="email" value="${user.email }" class="form-control" placeholder="Email">
 									</div>
 									<div class="col">
 										<label for="" class="form-label">Số điện thoại</label> <input
-											type="text" class="form-control" placeholder="Số điện thoại">
+											type="text" name="phone" class="form-control" placeholder="Số điện thoại">
 									</div>
 								</div>
 								<div class="row form-controll">
 									<div class="col">
-										<label for="" class="form-label">Tỉnh</label> <input
-											type="text" class="form-control" placeholder="Tỉnh">
-									</div>
-									<div class="col">
 										<label for="" class="form-label">Địa chỉ</label> <input
-											type="text" class="form-control" placeholder="Địa chỉ">
+											type="text" name="address" class="form-control" placeholder="Địa chỉ">
 									</div>
 								</div>
 								<div class="row form-controll">
 									<div class="col">
 										<button class="btn btn-primary" style="margin-right: 4px;">Xác
 											nhận thanh toán</button>
-										<button class="btn btn-warning">Hủy thanh toán</button>
+										<a href="/cart" class="btn btn-warning">Hủy thanh toán</a>
 									</div>
 
 								</div>
@@ -146,29 +138,23 @@
 									</tr>
 								</thead>
 								<tbody>
+								<c:forEach var="item" items="${items }">
 									<tr>
-										<td>Apple series 5 (2)</td>
-										<td>15,000,000đ</td>
+										<td>${item.product.name } (${item.quantity })</td>
+										<td> <fmt:formatNumber type="currency" value="${item.product.price }" /> </td>
 									</tr>
-									<tr>
-										<td>Apple series 5 sfsefdsfdsfdsfdsfsdf(2)</td>
-										<td>15,000,000đ</td>
-									</tr>
-									<tr>
-										<td>Apple series 5 (2)</td>
-										<td>15,000,000đ</td>
-									</tr>
+								</c:forEach>
 									<tr>
 										<th>Tạm tính</th>
-										<th>15,000,000đ</th>
+										<th> <fmt:formatNumber type="currency" value="${oldSum }" /> </th>
 									</tr>
 									<tr>
 										<th>Khuyến mãi</th>
-										<th>15,000,000đ</th>
+										<th><fmt:formatNumber type="currency" value="${discount }" /></th>
 									</tr>
 									<tr>
 										<th>Tổng</th>
-										<th>15,000,000đ</th>
+										<th><fmt:formatNumber type="currency" value="${newSum }" /></th>
 									</tr>
 								</tbody>
 							</table>

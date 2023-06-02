@@ -38,7 +38,7 @@ public class CartController {
 		Account acc = sessionse.get("user");
 		double sum = 0;
 		if(acc != null) {
-			List<OrderDetail> listOrder = ddao.findAllByUsername(acc.getUsername());
+			List<OrderDetail> listOrder = ddao.findAllByUsernameA(acc.getUsername());
 			model.addAttribute("items", listOrder);
 			
 			for(OrderDetail od : listOrder) {
@@ -55,7 +55,7 @@ public class CartController {
 			model.addAttribute("sign", "Đăng xuất"); 
 			model.addAttribute("link", "out");
 			int count = 0;
-			for(OrderDetail od : ddao.findAllByUsername(acc.getUsername())) {
+			for(OrderDetail od : ddao.findAllByUsernameA(acc.getUsername())) {
 				count++;
 			}
 			model.addAttribute("count", count);
@@ -70,8 +70,11 @@ public class CartController {
 		
 		List<Order> list = odao.findByUsername(acc.getUsername());
 		Order order = null;
-		if (list.size() > 0) {
-			order = list.get(0);
+		for(Order o : list) {
+			if(o.getAddress() == null) {
+				System.out.println("hello");
+				order = o;
+			}
 		}
 		if(order == null) {
 			order = new Order();
@@ -82,7 +85,7 @@ public class CartController {
 
 		Product product = pdao.getOne(id);
 		
-		OrderDetail od = ddao.findByProductId(id);
+		OrderDetail od = ddao.findByProductId(id, order.getId());
 		if(od == null) {
 			od = new OrderDetail();
 			od.setOrder(order);

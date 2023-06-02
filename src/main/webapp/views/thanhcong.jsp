@@ -79,7 +79,7 @@
 	<div class="container">
 		<h1 class="message">Thanh toán thành công</h1>
 		<div class="button-wrap d-flex justify-content-center">
-			<a href="" class="btn btn-primary">Quay trở lại trang chủ</a>
+			<a href="/" class="btn btn-primary">Quay trở lại trang chủ</a>
 		</div>
 
 	</div>
