@@ -25,10 +25,28 @@
 	<div class="container">
 		<header class="row align-item">
 			<div class="col-4 m-auto">
-				<a href="/form/${link}" class="login"> <i class="fa-solid fa-user"></i> ${sign }
-				</a>
-				<span class="contact-number">
-					Hotline <span>09335425686</span>
+				<c:if test="${sessionScope.user == null }">
+					<a href="/form/${link}" class="login"> <i
+						class="fa-solid fa-user"></i> ${sign }
+					</a>
+				</c:if>
+				<c:if test="${sessionScope.user != null }">
+					<span class="login"> <i class="fa-solid fa-user"></i> Tài
+						khoản <i class="fa-solid fa-chevron-down"></i>
+						<ul class="subnav-login">
+							<li class="subnav-login-item"><a href=""
+								class="subnav-login-link">Hóa đơn</a></li>
+							<c:if test="${sessionScope.user.admin }">
+								<li class="subnav-login-item"><a href=""
+									class="subnav-login-link">Trang quản trị</a></li>
+							</c:if>
+							<li class="subnav-login-item"><a href="/form/${link }"
+								class="subnav-login-link">${sign }</a></li>
+						</ul>
+					</span>
+				</c:if>
+
+				<span class="contact-number"> Hotline <span>09335425686</span>
 				</span>
 			</div>
 			<div class="col-3 text-center">
@@ -56,9 +74,9 @@
 				</div>
 
 				<div class="header-cart">
-					<a href="/cart" class="header-cart-text">
-						<i class="fa-solid fa-cart-shopping"></i>Giỏ hàng <span
-							class="header-cart-qty">(${count })</span>
+					<a href="/cart" class="header-cart-text"> <i
+						class="fa-solid fa-cart-shopping"></i>Giỏ hàng <span
+						class="header-cart-qty">(${count })</span>
 					</a>
 				</div>
 			</div>
