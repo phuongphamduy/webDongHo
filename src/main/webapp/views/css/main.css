@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+.disabled-link {
+    pointer-events: none;
+}
+
 
 .slick-next:before {
 
