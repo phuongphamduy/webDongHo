@@ -73,11 +73,18 @@ public class PayController {
 		Account acc = sessionse.get("user");
 		
 		Order order = odao.findByAddressU(acc.getUsername());
+		List<OrderDetail> listOrder = ddao.findAllByUsernameA(acc.getUsername());
+		double sum = 0;
+		for (OrderDetail od : listOrder) {
+			sum += od.getPrice() * od.getQuantity();
+
+		}
 		order.setFullname(fullname);
 		order.setEmail(email);
 		order.setAddress(address);
 		order.setPhone(phone);
 		order.setStatus(false);
+		order.setPrice(sum);
 		odao.save(order);
 		
 		if (acc == null) {

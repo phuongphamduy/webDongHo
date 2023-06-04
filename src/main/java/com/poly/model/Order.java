@@ -33,6 +33,7 @@ public class Order implements Serializable {
 	String phone;
 	String fullname;
 	String email;
+	Double price;
 	Boolean status;
 	@ManyToOne
 	@JoinColumn(name = "username")
