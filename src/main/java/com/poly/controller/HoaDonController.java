@@ -29,6 +29,10 @@ public class HoaDonController {
 		
 		Account acc = sessionse.get("user");
 		
+		List<Order> list = odao.findAll();
+		model.addAttribute("items", list);
+		
+		
 		if(acc == null) {
 			model.addAttribute("sign", "Đăng nhập");
 			model.addAttribute("link", "in");

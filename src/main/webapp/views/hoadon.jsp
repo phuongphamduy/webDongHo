@@ -96,76 +96,18 @@
 						<tr>
 							<th scope="row">${item.id }</th>
 							<td>${item.createdate }</td>
-							<td>  </td>
-							<td>Đã giao</td>
+							<td><fmt:formatNumber value="${item.price }" type="currency" />
+							</td>
+							<c:if test="${!item.status }">
+								<td>Đang chờ</td>
+							</c:if>
+							<c:if test="${item.status }">
+								<td>Đã giao</td>
+							</c:if>
 							<td>
 								<button type="button" class="btn btn-primary"
-									style="margin-right: 4px;" data-toggle="modal"
-									data-target="#exampleModal">Hóa đơn</button>
-								<div class="modal fade" id="exampleModal" tabindex="-1"
-									role="dialog" aria-labelledby="exampleModalLabel"
-									aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Hóa đơn
-													chi tiết</h5>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<div class="form">
-													<p class="form-heading"></p>
-													<div class="card">
-														<div class="card-body">
-															<h5 class="card-title form-heading">Hóa đơn</h5>
-															<table class="table">
-																<thead>
-																	<tr>
-																		<th scope="col">Sản phẩm</th>
-																		<th scope="col">Tổng tiền</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>Apple series 5 (2)</td>
-																		<td>15,000,000đ</td>
-																	</tr>
-																	<tr>
-																		<td>Apple series 5 sfsefdsfdsfdsfdsfsdf(2)</td>
-																		<td>15,000,000đ</td>
-																	</tr>
-																	<tr>
-																		<td>Apple series 5 (2)</td>
-																		<td>15,000,000đ</td>
-																	</tr>
-																	<tr>
-																		<th>Tạm tính</th>
-																		<th>15,000,000đ</th>
-																	</tr>
-																	<tr>
-																		<th>Khuyến mãi</th>
-																		<th>15,000,000đ</th>
-																	</tr>
-																	<tr>
-																		<th>Tổng</th>
-																		<th>15,000,000đ</th>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary"
-													data-dismiss="modal">Close</button>
-											</div>
-										</div>
-									</div>
-								</div> <a href="" class="btn btn-warning disabled-link">Hủy</a>
+									style="margin-right: 4px;">Hóa đơn</button>
+
 							</td>
 
 						</tr>
