@@ -105,34 +105,13 @@
 								<td>Đã giao</td>
 							</c:if>
 							<td>
-								<button type="button" class="btn btn-primary"
-									style="margin-right: 4px;">Hóa đơn</button>
+								<a href="/hoadonchitiet/${item.id }" class="btn btn-primary"
+									style="margin-right: 4px;">Hóa đơn</a>
 
 							</td>
 
 						</tr>
 					</c:forEach>
-
-					<tr>
-						<th scope="row">1</th>
-						<td>2022-6-3</td>
-						<td>110.000 đ</td>
-						<td>Đã giao</td>
-						<td>
-							<button class="btn btn-primary" style="margin-right: 4px;">Hóa
-								đơn</button> <a href="" class="btn btn-warning">Hủy</a>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">1</th>
-						<td>2022-6-3</td>
-						<td>110.000 đ</td>
-						<td>Đã giao</td>
-						<td>
-							<button class="btn btn-primary" style="margin-right: 4px;">Hóa
-								đơn</button> <a href="" class="btn btn-warning">Hủy</a>
-						</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>

@@ -14,4 +14,6 @@ public interface OrderDetailDAO extends JpaRepository<OrderDetail, Long>{
 	List<OrderDetail> findAllByUsername(String username);
 	@Query("select o from OrderDetail o where o.order.account.username like ?1 and o.order.address is null")
 	List<OrderDetail> findAllByUsernameA(String username);
+	@Query("select o from OrderDetail o where o.order.id = ?1")
+	List<OrderDetail> findByOrderId(Long id);
 }

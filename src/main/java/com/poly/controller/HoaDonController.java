@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poly.DAO.OrderDAO;
@@ -47,5 +48,36 @@ public class HoaDonController {
 			model.addAttribute("count", count);
 		}
 		return "hoadon";
+	}
+	
+	@RequestMapping("/hoadon/delete/{id}")
+	public String delete(Model model, @PathVariable("id") Long id) {
+		Order o = odao.getOne(id);
+		if(!o.getStatus()) {
+			odao.delete(o);
+			return "redirect:/hoadon";
+		}
+		return "redirect:/hoadonchitiet/" + id;
+		
+	}
+	
+	@RequestMapping("/hoadonchitiet/{id}")
+	public String  hoadonchitiet(Model model, @PathVariable("id") Long id) {
+		model.addAttribute("id", id);
+		Order order = odao.getOne(id);
+		model.addAttribute("status", order.getStatus());
+		List<OrderDetail> list = ddao.findByOrderId(id);
+		model.addAttribute("items", list);
+		double oldSum = 0;
+		double newSum = 0;
+		for(OrderDetail o : list) {
+			oldSum+=o.getProduct().getPrice() * o.getQuantity();
+			newSum+=o.getPrice() * o.getQuantity();
+		}
+		model.addAttribute("oldSum", oldSum);
+		model.addAttribute("newSum", newSum);
+		model.addAttribute("discount", oldSum - newSum);
+		
+		return "hoadonchitiet";
 	}
 }
