@@ -65,7 +65,7 @@ public class PayController {
 			model.addAttribute("count", count);
 		}
 
-		return "form";
+		return "pay";
 	}
 
 	@RequestMapping("/success")

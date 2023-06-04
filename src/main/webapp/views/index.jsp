@@ -34,7 +34,7 @@
 					<span class="login"> <i class="fa-solid fa-user"></i> Tài
 						khoản <i class="fa-solid fa-chevron-down"></i>
 						<ul class="subnav-login">
-							<li class="subnav-login-item"><a href=""
+							<li class="subnav-login-item"><a href="/hoadon"
 								class="subnav-login-link">Hóa đơn</a></li>
 							<c:if test="${sessionScope.user.admin }">
 								<li class="subnav-login-item"><a href=""
