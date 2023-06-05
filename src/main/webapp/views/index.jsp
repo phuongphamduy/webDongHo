@@ -25,10 +25,28 @@
 	<div class="container">
 		<header class="row align-item">
 			<div class="col-4 m-auto">
-				<a href="/form/${link}" class="login"> <i class="fa-solid fa-user"></i> ${sign }
-				</a>
-				<span class="contact-number">
-					Hotline <span>09335425686</span>
+				<c:if test="${sessionScope.user == null }">
+					<a href="/form/${link}" class="login"> <i
+						class="fa-solid fa-user"></i> ${sign }
+					</a>
+				</c:if>
+				<c:if test="${sessionScope.user != null }">
+					<span class="login"> <i class="fa-solid fa-user"></i> Tài
+						khoản <i class="fa-solid fa-chevron-down"></i>
+						<ul class="subnav-login">
+							<li class="subnav-login-item"><a href="/hoadon"
+								class="subnav-login-link">Hóa đơn</a></li>
+							<c:if test="${sessionScope.user.admin }">
+								<li class="subnav-login-item"><a href=""
+									class="subnav-login-link">Trang quản trị</a></li>
+							</c:if>
+							<li class="subnav-login-item"><a href="/form/${link }"
+								class="subnav-login-link">${sign }</a></li>
+						</ul>
+					</span>
+				</c:if>
+
+				<span class="contact-number"> Hotline <span>09335425686</span>
 				</span>
 			</div>
 			<div class="col-3 text-center">
@@ -56,9 +74,9 @@
 				</div>
 
 				<div class="header-cart">
-					<a href="/cart" class="header-cart-text">
-						<i class="fa-solid fa-cart-shopping"></i>Giỏ hàng <span
-							class="header-cart-qty">(${count })</span>
+					<a href="/cart" class="header-cart-text"> <i
+						class="fa-solid fa-cart-shopping"></i>Giỏ hàng <span
+						class="header-cart-qty">(${count })</span>
 					</a>
 				</div>
 			</div>
@@ -130,7 +148,7 @@
 					<div class="row justify-content-start">
 						<c:forEach var="item" items="${categories}">
 							<div class="col">
-								<a href="/${item.id }" class="product-brand-link text-center"
+								<a href="/?id=${item.id }" class="product-brand-link text-center"
 									onclick="choose()"> <img
 									src="./views/image/category/${item.image }" width="60px" height="60px"  alt="">
 									<p>${item.name }</p>
@@ -141,7 +159,7 @@
 				</div>
 				<div class="product-list">
 					<div class="row">
-						<c:forEach var="item" items="${products}">
+						<c:forEach var="item" items="${page.content }">
 							<div class="col-3">
 								<div class="product-item">
 									<a href="details/${item.id }" class="product-item-link"></a>
@@ -164,6 +182,10 @@
 								</div>
 							</div>
 						</c:forEach>
+					</div>
+					<div class="row justify-content-center">
+						<a href="/?p=${page.number - 1 }" class="btn btn-warning ${page.number == 0 ? 'disabled-link' : '' } ${page.number} " style="margin-right: 10px;">Trang
+							trước</a> <a href="/?p=${page.number + 1 }" class="btn btn-primary ${page.number == page.totalPages - 1 ? 'disabled-link' : '' } ${page.totalPages}">Trang sau</a>
 					</div>
 				</div>
 			</div>

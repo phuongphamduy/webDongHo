@@ -2,22 +2,19 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="../views/css/bootstrap.min.css">
-<script src="../views/js/bootstrap.min.js"></script>
 <script src="../views/js/jquery.min.js"></script>
+<script src="../views/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../views/css/main.css">
 <link rel="stylesheet" href="../views/css/cart.css">
 <script src="https://kit.fontawesome.com/5a854a2686.js"
 	crossorigin="anonymous"></script>
 </head>
-
 <body>
 	<fmt:setLocale value="vi_VN" />
 	<div class="container">
@@ -83,39 +80,41 @@
 		</nav>
 	</div>
 	<div class="container">
-		<div class="cart">
-			<h1 class="cart-heading">Giỏ hàng</h1>
+		<div class="row">
 			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Mã đơn hàng</th>
+						<th scope="col">Ngày đặt</th>
+						<th scope="col">Tổng tiền</th>
+						<th scope="col">Trạng thái</th>
+						<th scope="col">Hoạt động</th>
+					</tr>
+				</thead>
 				<tbody>
 					<c:forEach var="item" items="${items }">
 						<tr>
-							<form action="/cart/update/${item.id }" method="post">
-								<td><img src="../views/image/product/${item.product.image }"
-									width="100px" alt=""></td>
-								<td>
-									<p class="cart-product-name">${item.product.name }</p>
-									<p class="cart-product-price" style="color: red;"> <fmt:formatNumber value=" ${item.product.price -  (item.product.discount * item.product.price / 100) }" type="currency" /></p>
-								</td>
-								<td><input class="cart-input-qty" name="quantity" onblur="this.form.submit()" type="number" min="1"
-									value="${item.quantity }"></td>
-									<td><p class="cart-product-price" style="color: red;"><fmt:formatNumber value=" ${(item.product.price -  (item.product.discount * item.product.price / 100)) * item.quantity }" type="currency" /></p></td>
-								<td><a href="/cart/delete/${item.id }" class="cart-product-remove">Xóa</a></td>
-							</form>
+							<th scope="row">${item.id }</th>
+							<td>${item.createdate }</td>
+							<td><fmt:formatNumber value="${item.price }" type="currency" />
+							</td>
+							<c:if test="${!item.status }">
+								<td>Đang chờ</td>
+							</c:if>
+							<c:if test="${item.status }">
+								<td>Đã giao</td>
+							</c:if>
+							<td>
+								<a href="/hoadonchitiet/${item.id }" class="btn btn-primary"
+									style="margin-right: 4px;">Hóa đơn</a>
+
+							</td>
+
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="cart-sum-wrap">
-				<p class="cart-sum">
-					<span class="cart-sum-label">Tổng tiền</span> <span
-						class="cart-sum-price" style="color: red; font-weight: 700;"> <fmt:formatNumber value="${sum }" type="currency" /> </span>
-				</p>
-				<a href="/pay" class="btn btn-primary">Thanh toán</a>
-			</div>
 		</div>
-
 	</div>
-
 </body>
-
 </html>

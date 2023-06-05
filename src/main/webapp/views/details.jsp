@@ -172,10 +172,10 @@
 		<div class="another-product">
 			<h1 class="detail-product-heading">Sản phẩm liên quan</h1>
 			<div class="row another-product-list">
-				<c:forEach var="item" items="${products }">
+				<c:forEach var="item" items="${products.content }">
 					<div class="col-3 another-product-item">
 						<div class="product-item">
-							<a href="details/${item.id }" class="product-item-link"></a>
+							<a href="/details/${item.id }" class="product-item-link"></a>
 							<div class="product-img">
 								<img src="../views/image/product/${item.image }" alt="">
 							</div>
