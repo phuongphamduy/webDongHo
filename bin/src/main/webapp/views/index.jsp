@@ -128,11 +128,11 @@
 				</div>
 				<div class="product-brand">
 					<div class="row justify-content-start">
-						<c:forEach var="item" items="${categories}">
+						<c:forEach var="item" items="${categories }">
 							<div class="col">
 								<a href="/${item.id }" class="product-brand-link text-center"
 									onclick="choose()"> <img
-									src="./views/image/category/${item.image }" width="60px" height="60px"  alt="">
+									src="./views/image/product/${item.image }" alt="">
 									<p>${item.name }</p>
 								</a>
 							</div>
@@ -141,17 +141,17 @@
 				</div>
 				<div class="product-list">
 					<div class="row">
-						<c:forEach var="item" items="${products}">
+						<c:forEach var="item" items="${products }">
 							<div class="col-3">
 								<div class="product-item">
 									<a href="details/${item.id }" class="product-item-link"></a>
 									<div class="product-img">
-										<img src="./views/image/product/${item.image }" width="200px" height="200px" alt="">
+										<img src="./views/image/product/${item.image }" alt="">
 									</div>
 									<div class="product-content text-center">
 										<p class="product-name">${item.name }</p>
 										<div class="product-price">
-											<fmt:formatNumber type="currency" value="${item.price}" />
+											<fmt:formatNumber type="currency" value="${item.price }" />
 										</div>
 									</div>
 									<div class="product-icon">
