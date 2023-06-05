@@ -33,10 +33,19 @@ public class IndexController {
 	SessionService sessionse;
 	
 	@RequestMapping("/")
-	public String index(Model model, @RequestParam(required=false, value="p") Optional<Integer> p, @RequestParam(required=false, value="id") Optional<String> id) {
+	public String index(Model model, @RequestParam(required=false, value="p") Optional<Integer> p, @RequestParam(required=false) String id) {
 		Pageable pager = PageRequest.of(0, 6);
 		Pageable pageProduct = PageRequest.of(p.orElse(0), 8);
-		model.addAttribute("page", pdao.findByCategoryId(id.orElse("1"), pageProduct));
+		String id1 = "";
+		if(id == null) {
+			model.addAttribute("id1", "1");
+			id1 = "1";
+		}else {
+			model.addAttribute("id1", String.valueOf(id));
+			id1 = id;
+		}
+		
+		model.addAttribute("page", pdao.findByCategoryId(id1, pageProduct));
 		model.addAttribute("categories", cdao.findAll());
 		model.addAttribute("newProducts", pdao.findOrderByDate(pager));
 		model.addAttribute("categories", cdao.findAll());

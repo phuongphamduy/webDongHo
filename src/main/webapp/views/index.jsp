@@ -184,8 +184,8 @@
 						</c:forEach>
 					</div>
 					<div class="row justify-content-center">
-						<a href="/?p=${page.number - 1 }" class="btn btn-warning ${page.number == 0 ? 'disabled-link' : '' } ${page.number} " style="margin-right: 10px;">Trang
-							trước</a> <a href="/?p=${page.number + 1 }" class="btn btn-primary ${page.number == page.totalPages - 1 ? 'disabled-link' : '' } ${page.totalPages}">Trang sau</a>
+						<a href="/?p=${page.number - 1 }&id=${id1}" class="btn btn-warning ${page.number == 0 ? 'disabled-link' : '' } ${page.number} " style="margin-right: 10px;">Trang
+							trước</a> <a href="/?p=${page.number + 1 }&id=${id1}" class="btn btn-primary ${page.number == page.totalPages - 1 ? 'disabled-link' : '' } ${page.totalPages}">Trang sau</a>
 					</div>
 				</div>
 			</div>
