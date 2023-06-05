@@ -148,7 +148,7 @@
 					<div class="row justify-content-start">
 						<c:forEach var="item" items="${categories }">
 							<div class="col">
-								<a href="/${item.id }" class="product-brand-link text-center"
+								<a href="/?id=${item.id }" class="product-brand-link text-center"
 									onclick="choose()"> <img
 									src="./views/image/product/${item.image }" alt="">
 									<p>${item.name }</p>
@@ -159,7 +159,7 @@
 				</div>
 				<div class="product-list">
 					<div class="row">
-						<c:forEach var="item" items="${products }">
+						<c:forEach var="item" items="${page.content }">
 							<div class="col-3">
 								<div class="product-item">
 									<a href="details/${item.id }" class="product-item-link"></a>
@@ -182,6 +182,10 @@
 								</div>
 							</div>
 						</c:forEach>
+					</div>
+					<div class="row justify-content-center">
+						<a href="/?p=${page.number - 1 }" class="btn btn-warning ${page.number == 0 ? 'disabled-link' : '' } ${page.number} " style="margin-right: 10px;">Trang
+							trước</a> <a href="/?p=${page.number + 1 }" class="btn btn-primary ${page.number == page.totalPages - 1 ? 'disabled-link' : '' } ${page.totalPages}">Trang sau</a>
 					</div>
 				</div>
 			</div>

@@ -3,6 +3,9 @@ package com.poly.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +37,8 @@ public class DetailsController {
 	@RequestMapping("details/{id}")
 	public String details(@PathVariable("id") Integer id, Model model) {
 		Product p = pdao.getOne(id);
-		model.addAttribute("products", pdao.findByCategoryId(p.getCategory().getId()));
+		Pageable page = PageRequest.of(0, 6);
+		model.addAttribute("products", pdao.findByCategoryId(p.getCategory().getId(), page));
 		model.addAttribute("product", p);
 		Account acc = sessionse.get("user");
 		if(acc == null) {
