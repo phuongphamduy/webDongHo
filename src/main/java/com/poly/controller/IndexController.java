@@ -35,7 +35,7 @@ public class IndexController {
 	@RequestMapping("/")
 	public String index(Model model, @RequestParam(required=false, value="p") Optional<Integer> p, @RequestParam(required=false, value="id") Optional<String> id) {
 		Pageable pager = PageRequest.of(0, 6);
-		Pageable pageProduct = PageRequest.of(p.orElse(0), 4);
+		Pageable pageProduct = PageRequest.of(p.orElse(0), 8);
 		model.addAttribute("page", pdao.findByCategoryId(id.orElse("1"), pageProduct));
 		model.addAttribute("categories", cdao.findAll());
 		model.addAttribute("newProducts", pdao.findOrderByDate(pager));
