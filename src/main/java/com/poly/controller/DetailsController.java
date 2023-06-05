@@ -34,7 +34,7 @@ public class DetailsController {
 	@Autowired
 	OrderDAO odao;
 	
-	@RequestMapping("details/{id}")
+	@RequestMapping("/details/{id}")
 	public String details(@PathVariable("id") Integer id, Model model) {
 		Product p = pdao.getOne(id);
 		Pageable page = PageRequest.of(0, 6);
