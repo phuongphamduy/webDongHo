@@ -148,9 +148,10 @@
 					<div class="row justify-content-start">
 						<c:forEach var="item" items="${categories}">
 							<div class="col">
-								<a href="/?id=${item.id }" class="product-brand-link text-center"
-									onclick="choose()"> <img
-									src="./views/image/category/${item.image }" width="60px" height="60px"  alt="">
+								<a href="/?id=${item.id }"
+									class="product-brand-link text-center" onclick="choose()">
+									<img src="./views/image/category/${item.image }" width="60px"
+									height="60px" alt="">
 									<p>${item.name }</p>
 								</a>
 							</div>
@@ -164,7 +165,8 @@
 								<div class="product-item">
 									<a href="details/${item.id }" class="product-item-link"></a>
 									<div class="product-img">
-										<img src="./views/image/product/${item.image }" width="200px" height="200px" alt="">
+										<img src="./views/image/product/${item.image }" width="200px"
+											height="200px" alt="">
 									</div>
 									<div class="product-content text-center">
 										<p class="product-name">${item.name }</p>
@@ -184,8 +186,12 @@
 						</c:forEach>
 					</div>
 					<div class="row justify-content-center">
-						<a href="/?p=${page.number - 1 }&id=${id1}" class="btn btn-warning ${page.number == 0 ? 'disabled-link' : '' } ${page.number} " style="margin-right: 10px;">Trang
-							trước</a> <a href="/?p=${page.number + 1 }&id=${id1}" class="btn btn-primary ${page.number == page.totalPages - 1 ? 'disabled-link' : '' } ${page.totalPages}">Trang sau</a>
+						<a href="/?p=${page.number - 1 }&id=${id1}"
+							class="btn btn-warning ${page.number == 0 ? 'disabled-link' : '' } ${page.number} "
+							style="margin-right: 10px;">Trang trước</a> <a
+							href="/?p=${page.number + 1 }&id=${id1}"
+							class="btn btn-primary ${page.number == page.totalPages - 1 ? 'disabled-link' : '' } ${page.totalPages}">Trang
+							sau</a>
 					</div>
 				</div>
 			</div>
@@ -248,96 +254,26 @@
 					</div>
 					<div class="col-8">
 						<div class="row new-product-list">
-							<div class="col-4">
-								<div class="product-item">
-									<div class="product-img">
-										<img src="./views/image/product/applewatch1.jpg" alt="">
-									</div>
-									<div class="product-content text-center">
-										<p class="product-name">Apple watch series 6</p>
-										<div class="product-price">10,000,000đ</div>
-									</div>
-									<div class="product-icon">
-										<a href="" class="text-center"> <i
-											class="fa-solid fa-magnifying-glass-plus"></i>
-										</a> <a href="" class="text-center"> <i
-											class="fa-solid fa-basket-shopping"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-4">
-								<div class="product-item">
-									<div class="product-img">
-										<img src="./views/image/product/applewatch1.jpg" alt="">
-									</div>
-									<div class="product-content text-center">
-										<p class="product-name">Apple watch series 6</p>
-										<div class="product-price">10,000,000đ</div>
-									</div>
-									<div class="product-icon">
-										<a href="" class="text-center"> <i
-											class="fa-solid fa-magnifying-glass-plus"></i>
-										</a> <a href="" class="text-center"> <i
-											class="fa-solid fa-basket-shopping"></i>
-										</a>
+							<c:forEach var="item" items="${sales }">
+								<div class="col-4">
+									<div class="product-item">
+										<div class="product-img">
+											<img src="./views/image/product/${item.image }" alt="">
+										</div>
+										<div class="product-content text-center">
+											<p class="product-name">${item.name }</p>
+											<div class="product-price"> <fmt:formatNumber type="currency" value="${item.price }" /> </div>
+										</div>
+										<div class="product-icon">
+											<a href="details/${item.id }" class="text-center"> <i
+												class="fa-solid fa-magnifying-glass-plus"></i>
+											</a> <a href="/cart/${item.id }" class="text-center"> <i
+												class="fa-solid fa-basket-shopping"></i>
+											</a>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-4">
-								<div class="product-item">
-									<div class="product-img">
-										<img src="./views/image/product/applewatch1.jpg" alt="">
-									</div>
-									<div class="product-content text-center">
-										<p class="product-name">Apple watch series 6</p>
-										<div class="product-price">10,000,000đ</div>
-									</div>
-									<div class="product-icon">
-										<a href="" class="text-center"> <i
-											class="fa-solid fa-magnifying-glass-plus"></i>
-										</a> <a href="" class="text-center"> <i
-											class="fa-solid fa-basket-shopping"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-4">
-								<div class="product-item">
-									<div class="product-img">
-										<img src="./views/image/product/applewatch1.jpg" alt="">
-									</div>
-									<div class="product-content text-center">
-										<p class="product-name">Apple watch series 6</p>
-										<div class="product-price">10,000,000đ</div>
-									</div>
-									<div class="product-icon">
-										<a href="" class="text-center"> <i
-											class="fa-solid fa-magnifying-glass-plus"></i>
-										</a> <a href="" class="text-center"> <i
-											class="fa-solid fa-basket-shopping"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-4">
-								<div class="product-item">
-									<div class="product-img">
-										<img src="./views/image/product/applewatch1.jpg" alt="">
-									</div>
-									<div class="product-content text-center">
-										<p class="product-name">Apple watch series 6</p>
-										<div class="product-price">10,000,000đ</div>
-									</div>
-									<div class="product-icon">
-										<a href="" class="text-center"> <i
-											class="fa-solid fa-magnifying-glass-plus"></i>
-										</a> <a href="" class="text-center"> <i
-											class="fa-solid fa-basket-shopping"></i>
-										</a>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>

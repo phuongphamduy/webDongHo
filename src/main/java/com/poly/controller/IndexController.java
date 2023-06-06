@@ -1,5 +1,7 @@
 package com.poly.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,16 @@ public class IndexController {
 			id1 = id;
 		}
 		
+		Pageable pagesale = PageRequest.of(0, 6);
+		List<Object[]> list = ddao.findMostSale(pager);
+		
+		List<Product> sales = new ArrayList();
+		for(Object[] obj : list) {
+			Product ptem = pdao.getOne((Integer) obj[0]);
+			sales.add(ptem);
+		}
+		
+		model.addAttribute("sales", sales);
 		model.addAttribute("page", pdao.findByCategoryId(id1, pageProduct));
 		model.addAttribute("categories", cdao.findAll());
 		model.addAttribute("newProducts", pdao.findOrderByDate(pager));
