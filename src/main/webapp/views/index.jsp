@@ -262,7 +262,9 @@
 										</div>
 										<div class="product-content text-center">
 											<p class="product-name">${item.name }</p>
-											<div class="product-price"> <fmt:formatNumber type="currency" value="${item.price }" /> </div>
+											<div class="product-price">
+												<fmt:formatNumber type="currency" value="${item.price }" />
+											</div>
 										</div>
 										<div class="product-icon">
 											<a href="details/${item.id }" class="text-center"> <i
@@ -357,7 +359,7 @@
 					<div class="footer-nav">
 						<h3>Theo dõi chúng tôi</h3>
 						<iframe
-							src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtywebvua%2F&tabs&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1601131973565308"
+							src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FAnimeMyHeart&tabs&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1601131973565308"
 							width="340" height="130" style="border: none; overflow: hidden"
 							scrolling="no" frameborder="0" allowfullscreen="true"
 							allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
