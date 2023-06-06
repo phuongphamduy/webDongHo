@@ -30,7 +30,7 @@ public class HoaDonController {
 		
 		Account acc = sessionse.get("user");
 		
-		List<Order> list = odao.findAll();
+		List<Order> list = odao.findByUsername(acc.getUsername());
 		model.addAttribute("items", list);
 		
 		
