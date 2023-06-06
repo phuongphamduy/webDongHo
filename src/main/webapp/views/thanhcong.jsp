@@ -78,6 +78,7 @@
 	</div>
 	<div class="container">
 		<h1 class="message">Thanh toán thành công</h1>
+		<p class="message">(Vui lòng kiểm tra email)</p>
 		<div class="button-wrap d-flex justify-content-center">
 			<a href="/" class="btn btn-primary">Quay trở lại trang chủ</a>
 		</div>
