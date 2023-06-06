@@ -17,10 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.poly.DAO.CategoryDAO;
 import com.poly.DAO.OrderDetailDAO;
 import com.poly.DAO.ProductDAO;
+import com.poly.bean.MailerService;
+import com.poly.bean.MailerServiceImpl;
 import com.poly.bean.SessionService;
 import com.poly.model.Account;
 import com.poly.model.OrderDetail;
 import com.poly.model.Product;
+
+import jakarta.mail.MessagingException;
 
 @Controller
 public class IndexController {
@@ -33,6 +37,8 @@ public class IndexController {
 	OrderDetailDAO ddao;
 	@Autowired
 	SessionService sessionse;
+	@Autowired
+	MailerServiceImpl mail;
 	
 	@RequestMapping("/")
 	public String index(Model model, @RequestParam(required=false, value="p") Optional<Integer> p, @RequestParam(required=false) String id) {
@@ -75,6 +81,7 @@ public class IndexController {
 			}
 			model.addAttribute("count", count);
 		}
+		
 		return "index";
 	}
 	

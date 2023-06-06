@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.poly.DAO.AccountDAO;
 import com.poly.DAO.OrderDAO;
 import com.poly.DAO.OrderDetailDAO;
+import com.poly.bean.MailerServiceImpl;
 import com.poly.bean.SessionService;
 import com.poly.model.Account;
 import com.poly.model.Order;
 import com.poly.model.OrderDetail;
+
+import jakarta.mail.MessagingException;
 
 @Controller
 public class PayController {
@@ -27,6 +30,8 @@ public class PayController {
 	AccountDAO adao;
 	@Autowired
 	OrderDAO odao;
+	@Autowired
+	MailerServiceImpl mail;
 
 	@RequestMapping("/pay")
 	public String form(Model model) {
@@ -99,6 +104,11 @@ public class PayController {
 				count++;
 			}
 			model.addAttribute("count", count);
+		}
+		try {
+			mail.send("thth1732003@gmail.com", "hello1", "<a class='btn btn-primary' href='http://localhost:8080/' >quay lại trang chủ</a>");
+		} catch (MessagingException e) {
+			e.printStackTrace();
 		}
 		return "thanhcong";
 	}
