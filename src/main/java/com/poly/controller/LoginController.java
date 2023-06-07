@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.DAO.AccountDAO;
 import com.poly.bean.CookieService;
+import com.poly.bean.MailerServiceImpl;
 import com.poly.bean.ParamService;
 import com.poly.bean.SessionService;
 import com.poly.model.Account;
 
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 
 @Controller
@@ -32,6 +34,8 @@ public class LoginController {
 	ParamService paramse;
 	@Autowired
 	SessionService sessionse;
+	@Autowired
+	MailerServiceImpl mail;
 
 	@RequestMapping(value = "/form/in")	
 	public String form(@CookieValue(required = false, name = "username") String username,
@@ -66,6 +70,18 @@ public class LoginController {
 		
 		return "redirect:/form/in";
 	}
+	
+//	@RequestMapping("/xacnhan")
+//	public String confirm(@ModelAttribute("account") Account acc, Model model) {
+//		String otp = "123456";
+//		model.addAttribute("otp", otp);
+//		try {
+//			mail.send(acc.getEmail(), "Gửi mã xác nhận OTP", otp);
+//		} catch (MessagingException e) {
+//			e.printStackTrace();
+//		}
+//		return "xacnhan";
+//	}
 	
 	
 
