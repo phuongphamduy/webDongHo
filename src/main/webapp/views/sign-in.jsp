@@ -31,7 +31,7 @@
       </form>
       <span style="color: red; font-weight: 700;">${message }</span>
       <div class="form-dangky">
-        <span>Bạn chưa có tài khoản? <a href="">Đăng ký tại đây</a></span>
+        <span>Bạn chưa có tài khoản? <a href="/signUp">Đăng ký tại đây</a></span>
         <p>${message }</p>
       </div>
     </div>

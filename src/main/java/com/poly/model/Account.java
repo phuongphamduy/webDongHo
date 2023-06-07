@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,13 +21,22 @@ import lombok.NoArgsConstructor;
 @Table(name = "Accounts")
 public class Account implements Serializable {
 	@Id
+	@NotNull()
+	@NotBlank()
 	String username;
+	@NotNull()
+	@NotBlank()
 	String password;
+	@NotNull()
+	@NotBlank()
 	String fullname;
+	@NotNull()
+	@Email
+	@NotBlank()
 	String email;
 	String photo;
-	Boolean activated;
-	Boolean admin;
+	Boolean activated = true;
+	Boolean admin = false;
 	@OneToMany(mappedBy = "account")
 	List<Order> orders;
 	
