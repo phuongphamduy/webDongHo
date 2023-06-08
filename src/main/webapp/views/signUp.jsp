@@ -31,7 +31,11 @@
 					<label for="exampleInputPassword3">Email</label>
 					<form:input path="email" type="email" class="form-control"
 						id="exampleInputPassword3" placeholder="Email" />
-						<form:errors path="email" />
+					<form:errors path="email" />
+					<c:if test="${isEmail }">
+						<small style="color: red !important" id="emailHelp"
+							class="form-text text-muted">Email đã được sử dụng</small>
+					</c:if>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Tên đăng nhập</label>
@@ -39,8 +43,8 @@
 						id="exampleInputEmail1" aria-describedby="emailHelp"
 						placeholder="Nhập tên đăng nhập" />
 					<c:if test="${isHave }">
-						<small style="color: red !important" id="emailHelp" class="form-text text-muted">Tên
-							đăng nhập đã tồn tại</small>
+						<small style="color: red !important" id="emailHelp"
+							class="form-text text-muted">Tên đăng nhập đã tồn tại</small>
 					</c:if>
 					<form:errors path="username" />
 
@@ -49,7 +53,7 @@
 					<label for="exampleInputPassword1">Mật khẩu</label>
 					<form:input path="password" type="password" class="form-control"
 						id="exampleInputPassword1" placeholder="Mật khẩu" />
-						<form:errors path="password" />
+					<form:errors path="password" />
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword2">Nhập lại mật khẩu</label> <input

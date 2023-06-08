@@ -106,7 +106,7 @@ public class PayController {
 			model.addAttribute("count", count);
 		}
 		try {
-			mail.send("thth1732003@gmail.com", "Xác nhận thanh toán", "<body>\r\n"
+			mail.send(acc.getEmail(), "Xác nhận thanh toán", "<body>\r\n"
 					+ "    <p>Cảm ơn bạn đã mua hàng trên website Delta watch. Để kiểm tra hóa đơn bạn có thể bấm vào đường linh ở dưới</p>\r\n"
 					+ "    <div style=\"display: flex;\">\r\n"
 					+ "        <a style=\"display: inline-block; padding: 10px; background-color: aqua; text-decoration: none; color: #fff; text-align: center; margin: auto;\" href=\"http://localhost:8080/hoadon\">Kiểm tra hóa đơn</a>\r\n"
