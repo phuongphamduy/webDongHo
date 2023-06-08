@@ -65,6 +65,13 @@ public class LoginController {
 		} else {
 			model.addAttribute("isHave", false);
 		}
+		if(adao.findByEmail(acc.getEmail()) != null) {
+			model.addAttribute("isEmail", true);
+			return "signUp";
+		}else {
+			model.addAttribute("isEmail", false);
+		}
+		
 		if (acc.getPassword().equals(rePass) && !result.hasErrors()) {
 			String otp = RandomStringUtils.randomNumeric(6);
 			acc.setOtp(otp);
