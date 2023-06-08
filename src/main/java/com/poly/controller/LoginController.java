@@ -48,6 +48,43 @@ public class LoginController {
 		return "sign-in";
 	}
 
+	@PostMapping("/login")
+	public String login(@RequestParam("username") String un, @RequestParam("password") String pw,
+			@RequestParam(required = false, name = "remember") String rm, Model model) {
+		String username = paramse.getString(un, "");
+		String password = paramse.getString(pw, "");
+		Boolean remember = paramse.getBoolean(rm, false);
+		try {
+			Optional<Account> acc = adao.findById(username);
+			if (acc != null) {
+				System.out.println(acc.get().getUsername());
+				if (acc.get().getUsername().equals(username) && acc.get().getPassword().equals(password)
+						&& acc.get().getActivated()) {
+					sessionse.set("user", acc.get());
+					if (remember) {
+						cookiese.add("username", username, 24);
+						cookiese.add("password", password, 24);
+					}
+				} else {
+					model.addAttribute("message", "Chưa nhập đúng thông tin tài khoản");
+					return "forward:/form/in";
+				}
+			}
+		} catch (Exception e) {
+			model.addAttribute("message", "Nhập sai tên đăng nhập");
+			return "forward:/form/in";
+		}
+
+		return "forward:/";
+
+	}
+
+	@RequestMapping("/form/out")
+	public String out() {
+		sessionse.remove("user");
+		return "redirect:/";
+	}
+
 	@RequestMapping("/signUp")
 	public String signIn(@ModelAttribute("account") Account acc) {
 		return "signUp";
@@ -65,13 +102,13 @@ public class LoginController {
 		} else {
 			model.addAttribute("isHave", false);
 		}
-		if(adao.findByEmail(acc.getEmail()) != null) {
+		if (adao.findByEmail(acc.getEmail()) != null) {
 			model.addAttribute("isEmail", true);
 			return "signUp";
-		}else {
+		} else {
 			model.addAttribute("isEmail", false);
 		}
-		
+
 		if (acc.getPassword().equals(rePass) && !result.hasErrors()) {
 			String otp = RandomStringUtils.randomNumeric(6);
 			acc.setOtp(otp);
@@ -95,11 +132,11 @@ public class LoginController {
 		model.addAttribute("email1", acc.getEmail());
 		return "xacnhan";
 	}
-	
+
 	@PostMapping("/xacnhanMail")
 	public String confirm(@RequestParam("otp") String otp, @RequestParam("email") String email) {
 		Account acc = adao.findByEmail(email);
-		if(acc.getOtp().equals(otp)) {
+		if (acc.getOtp().equals(otp)) {
 			acc.setOtp(null);
 			acc.setActivated(true);
 			adao.save(acc);
@@ -108,38 +145,29 @@ public class LoginController {
 		return "xacnhan";
 	}
 
-	@PostMapping("/login")
-	public String login(@RequestParam("username") String un, @RequestParam("password") String pw,
-			@RequestParam(required = false, name = "remember") String rm, Model model) {
-		String username = paramse.getString(un, "");
-		String password = paramse.getString(pw, "");
-		Boolean remember = paramse.getBoolean(rm, false);
-		try {
-			Account acc = adao.getOne(un);
-			if (acc != null) {
-				if (acc.getUsername().compareTo(username) == 0 && acc.getPassword().equals(password) && acc.getActivated()) {
-					sessionse.set("user", acc);
-					if (remember) {
-						cookiese.add("username", username, 24);
-						cookiese.add("password", password, 24);
-					}
-				} else {
-					model.addAttribute("message", "Chưa nhập đúng thông tin tài khoản");
-					return "forward:/form/in";
-				}
-			}
-		} catch (Exception e) {
-			model.addAttribute("message", "Nhập sai tên đăng nhập");
-			return "forward:/form/in";
-		}
-
-		return "forward:/";
-
+	@RequestMapping("/getp")
+	public String toGetPass() {
+		return "GetPass";
 	}
 
-	@RequestMapping("/form/out")
-	public String out() {
-		sessionse.remove("user");
-		return "redirect:/";
+	@PostMapping("/GetPass")
+	public String getPass(@RequestParam("email") String email, Model model) {
+		Account acc = adao.findByEmail(email);
+		if (acc != null) {
+			try {
+				mail.send(email, "Lấy lại mât khẩu cũ trên web deltaWatch", "Tên đăng nhập của bạn là: "
+						+ acc.getUsername() + " <br/> Mật khẩu của bạn là: " + acc.getPassword()
+						+ "<div style=\"display: flex;\">\r\n\"\r\n"
+						+ "					+ \"        <a style=\"display: inline-block; padding: 10px; background-color: aqua; text-decoration: none; color: #fff; text-align: center; margin: auto;\" href=\"http://localhost:8080/form/in\">Đăng nhập</a>\r\n\"\r\n"
+						+ "					\"    </div>");
+				model.addAttribute("isSendEmail", true);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+		} else {
+			model.addAttribute("isHaveEmail", true);
+		}
+		return "forward:/getp";
+
 	}
 }
