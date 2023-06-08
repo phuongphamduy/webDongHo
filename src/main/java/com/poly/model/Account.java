@@ -35,8 +35,9 @@ public class Account implements Serializable {
 	@NotBlank()
 	String email;
 	String photo;
-	Boolean activated = true;
+	Boolean activated = false;
 	Boolean admin = false;
+	String otp;
 	@OneToMany(mappedBy = "account")
 	List<Order> orders;
 	

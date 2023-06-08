@@ -2,6 +2,7 @@ package com.poly.controller;
 
 import java.util.Optional;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ public class LoginController {
 	@Autowired
 	MailerServiceImpl mail;
 
-	@RequestMapping(value = "/form/in")	
+	@RequestMapping(value = "/form/in")
 	public String form(@CookieValue(required = false, name = "username") String username,
 			@CookieValue(required = false, name = "password") String password, Model model,
 			@RequestAttribute(required = false, name = "message") String message) {
@@ -46,44 +47,59 @@ public class LoginController {
 		model.addAttribute("message", message);
 		return "sign-in";
 	}
-	
+
 	@RequestMapping("/signUp")
 	public String signIn(@ModelAttribute("account") Account acc) {
 		return "signUp";
 	}
-	
+
 	@PostMapping("/SignUp")
-	public String doSignUp(@Valid @ModelAttribute("account") Account acc,BindingResult result, @RequestParam("rePass") String rePass, Model model) {
+	public String doSignUp(@Valid @ModelAttribute("account") Account acc, BindingResult result,
+			@RequestParam("rePass") String rePass, Model model) {
 		Optional<Account> account = adao.findById(acc.getUsername());
-		if(account.isPresent()) {
-			System.out.println("hello");
-			model.addAttribute("isHave", true);
-			return "signUp";
-		}else {
+		if (account.isPresent()) {
+			if (account.get().getActivated()) {
+				model.addAttribute("isHave", true);
+				return "signUp";
+			}
+		} else {
 			model.addAttribute("isHave", false);
 		}
-		if(acc.getPassword().equals(rePass) && !result.hasErrors()) {
+		if (acc.getPassword().equals(rePass) && !result.hasErrors()) {
+			String otp = RandomStringUtils.randomNumeric(6);
+			acc.setOtp(otp);
 			adao.save(acc);
-		}else {
+			try {
+				mail.send(acc.getEmail(), "Mã xác nhận Otp", "Không gửi mã xác nhận này cho bất kỳ ai: " + otp);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+			return "forward:/confirm";
+		} else {
 			model.addAttribute("re", true);
 		}
-		
-		return "redirect:/form/in";
+
+		return "signUp";
+
+	}
+
+	@RequestMapping("/confirm")
+	public String xacnhan(@ModelAttribute("account") Account acc, Model model) {
+		model.addAttribute("email1", acc.getEmail());
+		return "xacnhan";
 	}
 	
-//	@RequestMapping("/xacnhan")
-//	public String confirm(@ModelAttribute("account") Account acc, Model model) {
-//		String otp = "123456";
-//		model.addAttribute("otp", otp);
-//		try {
-//			mail.send(acc.getEmail(), "Gửi mã xác nhận OTP", otp);
-//		} catch (MessagingException e) {
-//			e.printStackTrace();
-//		}
-//		return "xacnhan";
-//	}
-	
-	
+	@PostMapping("/xacnhanMail")
+	public String confirm(@RequestParam("otp") String otp, @RequestParam("email") String email) {
+		Account acc = adao.findByEmail(email);
+		if(acc.getOtp().equals(otp)) {
+			acc.setOtp(null);
+			acc.setActivated(true);
+			adao.save(acc);
+			return "redirect:/form/in";
+		}
+		return "xacnhan";
+	}
 
 	@PostMapping("/login")
 	public String login(@RequestParam("username") String un, @RequestParam("password") String pw,
