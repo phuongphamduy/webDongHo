@@ -117,7 +117,7 @@ public class LoginController {
 		try {
 			Account acc = adao.getOne(un);
 			if (acc != null) {
-				if (acc.getUsername().equals(username) && acc.getPassword().equals(password)) {
+				if (acc.getUsername().compareTo(username) == 0 && acc.getPassword().equals(password) && acc.getActivated()) {
 					sessionse.set("user", acc);
 					if (remember) {
 						cookiese.add("username", username, 24);
@@ -125,12 +125,12 @@ public class LoginController {
 					}
 				} else {
 					model.addAttribute("message", "Chưa nhập đúng thông tin tài khoản");
-					return "forward:/form";
+					return "forward:/form/in";
 				}
 			}
 		} catch (Exception e) {
 			model.addAttribute("message", "Nhập sai tên đăng nhập");
-			return "forward:/form";
+			return "forward:/form/in";
 		}
 
 		return "forward:/";
