@@ -31,8 +31,12 @@
       </form>
       <span style="color: red; font-weight: 700;">${message }</span>
       <div class="form-dangky">
+        <a href="/getp">Quên mật khẩu</a>
+      </div>
+      <div class="form-dangky">
         <span>Bạn chưa có tài khoản? <a href="/signUp">Đăng ký tại đây</a></span>
       </div>
+      
     </div>
   </div>
 </body>
