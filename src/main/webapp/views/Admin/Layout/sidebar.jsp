@@ -32,7 +32,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
         crossorigin="anonymous"
       ></script>
 
-      <link rel="stylesheet" href="../../views/css/admin.css" />
+      <link rel="stylesheet" href="../../views/css/sidebar.css" />
 
       <link
         rel="stylesheet"
@@ -60,18 +60,10 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
         <!-- <a href="#" class="w3-bar-item w3-button">Dashboard</a> -->
         <p class="title-quanly">Quản lý</p>
         <hr />
-        <div
-          style="
-            padding-right: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          "
+
+        <a href="/admin/product/formproduct" class="w3-bar-item w3-button"
+          ><i class="fa-solid fa-briefcase"></i> Sản phẩm</a
         >
-          <a href="/admin/product/formproduct" class="w3-bar-item w3-button"
-            ><i class="fa-solid fa-briefcase"></i> Sản phẩm</a
-          >
-        </div>
 
         <div class="w3-dropdown-click">
           <button
@@ -199,7 +191,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                     margin-right: 20px;
                   "
                 >
-                  <a class="nav-link active" aria-current="page" href="#"
+                  <a class="nav-link active" aria-current="page" href="/"
                     >Trang chủ</a
                   >
                 </li>
@@ -215,7 +207,9 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                 <div class="block-icon-header">
                   <div style="text-decoration: none">
                     <a href="#">
-                      <i class="fa-solid fa-bell icon-header"></i>
+                      <span class="icon-header">
+                        <i class="fa-solid fa-bell"></i>
+                      </span>
                       <span class="text-icon-header" style="color: #333"
                         >12</span
                       >
@@ -225,9 +219,11 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                 <div class="block-icon-header">
                   <div style="text-decoration: none">
                     <a href="#">
-                      <i class="fa-solid fa-message icon-header"></i>
+                      <span class="icon-header">
+                        <i class="fa-solid fa-message"></i>
+                      </span>
                       <span class="text-icon-header" style="color: #333"
-                        >29</span
+                        >17</span
                       >
                     </a>
                   </div>
@@ -235,19 +231,23 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                 <div class="block-icon-header">
                   <div style="text-decoration: none">
                     <a href="#">
-                      <i class="fa-solid fa-earth-americas icon-header"></i>
+                      <span class="icon-header">
+                        <i class="fa-solid fa-earth-americas"></i>
+                      </span>
                       <span class="text-icon-header" style="color: #333"
-                        >99</span
+                        >29</span
                       >
                     </a>
                   </div>
                 </div>
                 <span
                   style="
-                    margin-right: 10px;
+                    margin-right: 20px;
                     display: flex;
                     align-items: center;
-                    color: 7A7A7A;
+                    color: #7a7a7a;
+                    font-size: 1.2rem;
+                    font-weight: 400;
                   "
                   >Tuấn Lê</span
                 >

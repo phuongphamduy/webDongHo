@@ -27,7 +27,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
               />
             </div>
             <div class="col-md-6">
-              <label for="xuatxu" class="form-label"><b>Discount</b></label>
+              <label for="xuatxu" class="form-label"><b>Giảm giá</b></label>
               <input
                 type="text"
                 class="form-control"
@@ -71,6 +71,88 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
               <button type="submit" class="btn btn-warning">Danh sách</button>
             </div>
           </form>
+        </div>
+      </div>
+      
+    </div>
+    <div style="margin-left: 15%; padding: 10px">
+      <span style="font-size: 40px">Danh sách người dùng</span>
+
+      <div class="card">
+        <div class="card-header">Bảng danh sách</div>
+        <div class="card-body">
+          <!-- search -->
+          <jsp:include page="/views/Admin/Layout/search.jsp"></jsp:include>
+          <table class="table table-light">
+            <thead
+              style="font-size: 1.2rem; font-weight: 500; text-align: center"
+            >
+              <td><b>Tên sản phẩm</b></td>
+              <td><b>Giá</b></td>
+              <td><b>Giảm giá</b></td>
+              <td><b>Loại</b></td>
+              <td><b>Hình</b></td>
+              <td><b>Ngày</b></td>
+              <td><b>Action</b></td>
+            </thead>
+            <tbody style="text-align: center">
+              <tr class="table-active">
+                <td>Iphone12</td>
+                <td>29999999</td>
+                <td>30%</td>
+                <td>Diamon</td>
+                <td>img</td>
+                <td>12/1/2020</td>
+                <td>
+                  <button class="btn btn-danger">Xóa</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Iphone12</td>
+                <td>29999999</td>
+                <td>30%</td>
+                <td>Diamon</td>
+                <td>img</td>
+                <td>12/1/2020</td>
+                <td>
+                  <button class="btn btn-danger">Xóa</button>
+                </td>
+              </tr>
+              <tr class="table-active">
+                <td>Iphone12</td>
+                <td>29999999</td>
+                <td>30%</td>
+                <td>Diamon</td>
+                <td>img</td>
+                <td>12/1/2020</td>
+                <td>
+                  <button class="btn btn-danger">Xóa</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Iphone12</td>
+                <td>29999999</td>
+                <td>30%</td>
+                <td>Diamon</td>
+                <td>img</td>
+                <td>12/1/2020</td>
+                <td>
+                  <button class="btn btn-danger">Xóa</button>
+                </td>
+              </tr>
+              <tr class="table-active">
+                <td>Iphone12</td>
+                <td>29999999</td>
+                <td>30%</td>
+                <td>Diamon</td>
+                <td>img</td>
+                <td>12/1/2020</td>
+                <td>
+                  <button class="btn btn-danger">Xóa</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <jsp:include page="/views/Admin/Layout/footer.jsp"></jsp:include>
