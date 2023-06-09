@@ -37,7 +37,7 @@
 							<li class="subnav-login-item"><a href=""
 								class="subnav-login-link">Hóa đơn</a></li>
 							<c:if test="${sessionScope.user.admin }">
-								<li class="subnav-login-item"><a href="/admin/index"
+								<li class="subnav-login-item"><a href=""
 									class="subnav-login-link">Trang quản trị</a></li>
 							</c:if>
 							<li class="subnav-login-item"><a href="/form/${link }"
