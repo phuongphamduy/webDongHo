@@ -24,10 +24,14 @@ public class AuthInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
 		String uri = request.getRequestURI();
-		
 		Account acc = sessionse.get("user");
+		String error="";
 		if(acc == null) {
 			response.sendRedirect("/form/in");
+			return false;
+		}else if(!acc.getAdmin()&& uri.startsWith("/admin/")) {
+			error = "loi tumlum!";
+			response.sendRedirect("/form/in?error="+error);
 			return false;
 		}
 		return true;
