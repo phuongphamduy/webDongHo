@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jstl/core_rt"
 prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,53 +22,27 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
             <thead
               style="font-size: 1.2rem; font-weight: 500; text-align: center"
             >
-              <td><b>Tài khoảng</b></td>
-              <td><b>Email</b></td>
+              <td><b>Tài khoản</b></td>
               <td><b>Mật khẩu</b></td>
+              <td><b>Fullname</b></td>
+              <td><b>Email</b></td>
+              <td><b>Photo</b></td>
               <td><b>Action</b></td>
             </thead>
             <tbody style="text-align: center">
+            <c:forEach items="${userItems}" var="acc">
               <tr class="table-active">
-                <td>Đức Tuấn</td>
-                <td>leductuan@123</td>
-                <td>123456789</td>
-
+                <td>${acc.username}</td>
+                <td>${acc.password}</td>
+                <td>${acc.fullname}</td>
+                <td>${acc.email}</td>
+                <td><img src="../../image/category/${acc.photo}" height="50px" width="70px" alt=""></td>
                 <td>
-                  <button class="btn btn-danger">Xóa</button>
+                  <button href="/admin/user/delete?username=${acc.username}  class="btn btn-danger">Xóa</button>
                 </td>
               </tr>
-              <tr>
-                <td>Trọng nguyễn</td>
-                <td>Trong@123</td>
-                <td>123456789</td>
-                <td>
-                  <button class="btn btn-danger">Xóa</button>
-                </td>
-              </tr>
-              <tr class="table-active">
-                <td>Quốc Thịnh</td>
-                <td>Thinh@123</td>
-                <td>123456789</td>
-                <td>
-                  <button class="btn btn-danger">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Quốc trí</td>
-                <td>leductuan@123</td>
-                <td>123456789</td>
-                <td>
-                  <button class="btn btn-danger">Xóa</button>
-                </td>
-              </tr>
-              <tr class="table-active">
-                <td>Phương</td>
-                <td>Phương@123</td>
-                <td>123456789</td>
-                <td>
-                  <button class="btn btn-danger">Xóa</button>
-                </td>
-              </tr>
+              	</c:forEach>
+           
             </tbody>
           </table>
         </div>

@@ -12,6 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,12 @@ import lombok.NoArgsConstructor;
 public class Product implements Serializable {
 	@Id
 	Integer id;
+	@NotBlank
 	String name;
 	String image;
+	@NotBlank
 	Double price;
+	@NotBlank
 	Double discount;
 	@Temporal(TemporalType.DATE)
 	Date createdate;
