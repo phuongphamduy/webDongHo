@@ -41,8 +41,8 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                 <td>${od.id }</td>
                 <td>${od.price }</td>
                 <td>${od.quantity }</td>
-                <td style="max-width: 50px; min-width: 30px">${od.order}</td>
-                <td style="max-width: 100px">${od.product}</td>
+                <td style="max-width: 50px; min-width: 30px">${od.order.orderid}</td>
+                <td style="max-width: 100px">${od.product.productid}</td>
               </tr>
               	</c:forEach>
             </tbody>
