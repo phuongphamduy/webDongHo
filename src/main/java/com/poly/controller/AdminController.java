@@ -115,7 +115,7 @@ public class AdminController {
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
 		try {
-			Path path = Paths.get("D:\\java5\\ASM\\webDongHo\\src\\main\\webapp\\views\\image\\product\\" + fileName);
+			Path path = Paths.get(app.getRealPath("\\views\\image\\product\\" + fileName));
 			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			String dd = file.getOriginalFilename();
 			sp.setImage(dd);
@@ -139,7 +139,7 @@ public class AdminController {
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
 		try {
-			Path path = Paths.get("D:\\java5\\ASM\\webDongHo\\src\\main\\webapp\\views\\image\\product\\" + fileName);
+			Path path = Paths.get(app.getRealPath("\\views\\image\\product\\" + fileName));
 			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			String dd = file.getOriginalFilename();
 			sp.setImage(dd);
