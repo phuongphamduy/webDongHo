@@ -133,8 +133,8 @@
 								<td><img src="../../image/product/${sp.image}" height="50px" width="70px" alt=""></td>
 								<td><fmt:formatDate value="${sp.createdate}" pattern="dd-MM-yyyy" /></td>
 								<td>
-									<button href="/admin/product/edit?id=${sp.id}"
-										class="btn btn-warning">Edit</button>
+									<a href="/admin/product/edit?id=${sp.id}"
+										class="btn btn-warning">Edit</a>
 									<button href="/admin/product/delete?id=${sp.id}"
 										class="btn btn-danger">Xóa</button>
 								</td>
