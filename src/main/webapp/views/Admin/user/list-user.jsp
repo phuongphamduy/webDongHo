@@ -43,7 +43,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                 <td>${acc.password}</td>
                 <td>${acc.fullname}</td>
                 <td>${acc.email}</td>
-                <td><img src="../../image/category/${acc.photo}" height="50px" width="70px" alt=""></td>
+                <td><img src="../views/image/category/${acc.photo}" height="50px" width="70px" alt=""></td>
                 <td>
                   <a href="/admin/user/delete?username=${acc.username}  class="btn btn-danger">Xóa</a>
                 </td>

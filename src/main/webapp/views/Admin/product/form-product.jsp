@@ -131,7 +131,7 @@
 								<td><fmt:formatNumber pattern="#,##0" value="${sp.price }" /></td>
 								<td>${sp.discount }</td>
 								<td>${sp.category.id }</td>
-								<td><img src="../../image/product/${sp.image}" height="50px" width="70px" alt=""></td>
+								<td><img src="../views/image/product/${sp.image}" height="50px" width="70px" alt=""></td>
 								<td><fmt:formatDate value="${sp.createdate}" pattern="dd-MM-yyyy" /></td>
 								<td>
 									<a href="/admin/product/edit?id=${sp.id}"
