@@ -127,7 +127,7 @@
 						<c:forEach items="${productItems}" var="sp">
 							<tr class="table-active">
 								<td>${sp.name }</td>
-								<td>${sp.price }</td>
+								<td><fmt:formatNumber pattern="#,##0" value="${sp.price }" /></td>
 								<td>${sp.discount }</td>
 								<td>${sp.category.id }</td>
 								<td><img src="../../image/product/${sp.image}" height="50px" width="70px" alt=""></td>
@@ -135,8 +135,8 @@
 								<td>
 									<a href="/admin/product/edit?id=${sp.id}"
 										class="btn btn-warning">Edit</a>
-									<button href="/admin/product/delete?id=${sp.id}"
-										class="btn btn-danger">Xóa</button>
+									<a href="/admin/product/delete?id=${sp.id}"
+										class="btn btn-danger">Xóa</a>
 								</td>
 							</tr>
 						</c:forEach>

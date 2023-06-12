@@ -121,7 +121,7 @@ public class AdminController {
 			sp.setImage(dd);
 			if (!result.hasErrors()) {
 				pDao.save(sp);
-				model.addAttribute("success_product", "Create success!");
+				model.addAttribute("success_product", "Create success!");		
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,16 +134,30 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admin/product/update")
-	public String ProductUpdate(Model model,@Validated @ModelAttribute("productItem") Product sp, BindingResult result) {
-		if(!result.hasErrors()) {
-			if(pDao.findById(sp.getId()).isEmpty())
-				model.addAttribute("error_product", "Id không tồn tại!");
-			else {
+	public String ProductUpdate(Model model,@Validated @ModelAttribute("productItem") Product sp, BindingResult result, @RequestParam("img") MultipartFile file) throws IllegalStateException, IOException {
+		if(!file.isEmpty()) {
+			System.out.println("hello");
+			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+		try {
+			Path path = Paths.get("D:\\java5\\ASM\\webDongHo\\src\\main\\webapp\\views\\image\\product\\" + fileName);
+			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+			String dd = file.getOriginalFilename();
+			sp.setImage(dd);
+			if (!result.hasErrors()) {
+				if(pDao.findById(sp.getId()).isEmpty())
+					model.addAttribute("error_product", "Id không tồn tại!");
+				else {
 				pDao.save(sp);
 				model.addAttribute("success_product", "Update success!");
+				}
 			}
-		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
 		model.addAttribute("productItems", pDao.findAll());
+		}
 		return "Admin/product/form-product";
 	}
 	

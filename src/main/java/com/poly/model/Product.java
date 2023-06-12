@@ -33,11 +33,13 @@ public class Product implements Serializable {
 	Integer id;
 	@NotBlank
 	String name;
+	@NotBlank
 	String image;
 	@NotNull
 	Double price;
 	@NotNull
 	Double discount;
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	Date createdate;
