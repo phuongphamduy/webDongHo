@@ -143,7 +143,6 @@ public class AdminController {
 			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			String dd = file.getOriginalFilename();
 			sp.setImage(dd);
-			System.out.println(result.toString());
 			if (!result.hasErrors()) {
 				if(pDao.findById(sp.getId()).isEmpty())
 					model.addAttribute("error_product", "Id không tồn tại!");

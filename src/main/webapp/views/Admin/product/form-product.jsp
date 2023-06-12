@@ -36,6 +36,7 @@
 				</div>
 				<div class="card-body">
 					<div class="row g-3">
+					<form:input path="id" type="hidden"/>
 						<div class="col-md-6">
 							<label for="name" class="form-label"><b>Tên sản phẩm</b></label>
 							<form:input type="text" class="form-control" path="name" />
