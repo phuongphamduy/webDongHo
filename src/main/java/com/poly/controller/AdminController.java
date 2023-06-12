@@ -5,8 +5,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -20,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.poly.DAO.AccountDAO;
+import com.poly.DAO.CategoryDAO;
 import com.poly.DAO.ProductDAO;
 import com.poly.model.Account;
+import com.poly.model.Category;
 import com.poly.model.Product;
 
 import jakarta.servlet.ServletContext;
@@ -32,6 +37,9 @@ public class AdminController {
 	
 	@Autowired
 	ProductDAO pDao;
+	
+	@Autowired
+	CategoryDAO caDao;
 	
 	@Autowired
 	AccountDAO accDao;
@@ -91,6 +99,13 @@ public class AdminController {
 		sp.setCreatedate(null);
 		model.addAttribute("productItems", pDao.findAll());
 		return "Admin/product/form-product";
+	}
+	
+	@ModelAttribute("listCategory")
+	public List<String> getFaculties(Model model, @ModelAttribute("listCategory") Category ca){
+		model.addAttribute("listCategorys", pDao.findAll());
+
+		return Arrays.asList();
 	}
 
 	@PostMapping("/admin/product/create")

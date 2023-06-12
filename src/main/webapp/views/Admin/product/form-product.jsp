@@ -62,8 +62,14 @@
 						</div>
 						<div class="col-md-6">
 							<label for="category" class="form-label"><b>Loại</b></label>
-							<form:input type="text" class="form-control" path="category" />
-							<form:errors path="category" class="form-text text-danger" />
+<%-- 							<form:input type="text" class="form-control" path="category" /> --%>
+<%-- 							<form:errors path="category" class="form-text text-danger" /> --%>
+							<form:select path="category" class="form-select"
+								aria-label="Default select example">
+								<c:forEach items="${listCategorys}" var="f">
+									<form:option value="${f.category}">${f.category}</form:option>
+								</c:forEach>
+							</form:select>
 							<c:if test="${not empty error_product}">
 								<div class="form-text text-danger">${error_product}</div>
 							</c:if>

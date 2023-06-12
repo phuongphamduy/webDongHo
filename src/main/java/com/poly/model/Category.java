@@ -26,7 +26,7 @@ public class Category implements Serializable {
 	
 	@Override
 	public String toString() {
-		return this.name;
+		return this.id;
 		
 	}
 }
