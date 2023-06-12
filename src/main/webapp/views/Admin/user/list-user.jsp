@@ -33,8 +33,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
               <td><b>Mật khẩu</b></td>
               <td><b>Fullname</b></td>
               <td><b>Email</b></td>
-              <td><b>Photo</b></td>
-              <td><b>Action</b></td>
+              <td><b>Photo</b></td>       
             </thead>
             <tbody style="text-align: center">
             <c:forEach items="${userItems}" var="acc">
@@ -43,10 +42,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                 <td>${acc.password}</td>
                 <td>${acc.fullname}</td>
                 <td>${acc.email}</td>
-                <td><img src="../views/image/category/${acc.photo}" height="50px" width="70px" alt=""></td>
-                <td>
-                  <a href="/admin/user/delete?username=${acc.username}  class="btn btn-danger">Xóa</a>
-                </td>
+                <td><img src="${pageContext.request.contextPath }/views/image/category/${acc.photo}" height="50px" width="70px" alt=""></td>        
               </tr>
               	</c:forEach>
            

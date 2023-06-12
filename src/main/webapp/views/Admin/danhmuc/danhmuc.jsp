@@ -86,7 +86,7 @@
 							<tr class="table-active">
 								<td>${ca.id }</td>
 								<td>${ca.name }</td>
-								<td><img src="./views/image/category/${ca.image}" height="50px" width="70px" alt=""></td>								
+								<td><img src="${pageContext.request.contextPath }/views/image/category/${ca.image}" height="50px" width="70px" alt=""></td>								
 							</tr>
 						</c:forEach>
 

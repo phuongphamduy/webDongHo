@@ -44,7 +44,7 @@
 								<td>${o.phone}</td>
 								<td>${o.fullname}</td>
 								<td>${o.email}</td>
-								<td>${o.price}</td>
+								<td><fmt:formatNumber pattern="#,##0" value="${o.price }" /> VNĐ</td>
 								<td>${o.status}</td>
 							</tr>
 						</c:forEach>

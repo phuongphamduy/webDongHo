@@ -42,19 +42,11 @@ import jakarta.servlet.ServletContext;
 
 
 @Controller
-public class AdminController {
+public class AdminOrderDetailController {
 	
-	@Autowired
-	ProductDAO pDao;
+
 	
-	@Autowired
-	CategoryDAO caDao;
 	
-	@Autowired
-	AccountDAO accDao;
-	
-	@Autowired
-	OrderDAO oDao;
 	
 	@Autowired
 	OrderDetailDAO odDao;
@@ -65,50 +57,17 @@ public class AdminController {
 	@Autowired
 	SessionService session;
 	
-	@RequestMapping("/admin/index")
-	public String Admin() {
-		return "Admin/index";
+
+	
+	
+	//------------orderdetail-------------------------
+	
+	@RequestMapping("/admin/order/detailorder")
+	public String DetailOrder(Model model, @ModelAttribute("otherDetailItem") OrderDetail o) {
+		model.addAttribute("otherDetailItems", odDao.findAll());
+		return "Admin/order/detail-order";
 	}
 
 	
-
-	
-	
-	
-	
-	
-
-	
-	
-	
-
-	
-	
-
-	
-	
-	
-	
-
-	@RequestMapping("/admin/order/delivered")
-	public String orderDelivered() {
-		return "Admin/order/order-delivered-list";
-	}
-
-	
-	@RequestMapping("/admin/product/formsize")
-	public String FormSize() {
-		return "Admin/product/form-size";
-	}
-
-	@RequestMapping("/admin/thongke/tkproduct")
-	public String ThongkeProduct() {
-		return "Admin/thongke/thongke-product";
-	}
-
-	@RequestMapping("/admin/thongke/tkorder")
-	public String ThongkeOrder() {
-		return "Admin/thongke/thongke-order";
-	}
 
 }
