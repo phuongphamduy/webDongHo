@@ -7,6 +7,13 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
   <head>
     <meta charset="ISO-8859-1" />
     <title>Insert title here</title>
+    <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   </head>
   <body>
     <jsp:include page="/views/Admin/Layout/sidebar.jsp"></jsp:include>
@@ -38,7 +45,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                 <td>${acc.email}</td>
                 <td><img src="../../image/category/${acc.photo}" height="50px" width="70px" alt=""></td>
                 <td>
-                  <button href="/admin/user/delete?username=${acc.username}  class="btn btn-danger">Xóa</button>
+                  <a href="/admin/user/delete?username=${acc.username}  class="btn btn-danger">Xóa</a>
                 </td>
               </tr>
               	</c:forEach>

@@ -21,7 +21,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
               margin-bottom: 10px;
             "
           >
-            <a href="/admin/order/orderlist">
+            <a href="/admin/order/order">
               <button class="btn btn-primary">Trở lại</button>
             </a>
           </div>
@@ -36,34 +36,15 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
               </tr>
             </thead>
             <tbody>
+             <c:forEach items="${orderDetailItems}" var="od">
               <tr>
-                <td>1</td>
-                <td>500000</td>
-                <td>27</td>
-                <td style="max-width: 50px; min-width: 30px">A12c</td>
-                <td style="max-width: 100px">123</td>
+                <td>${od.id }</td>
+                <td>${od.price }</td>
+                <td>${od.quantity }</td>
+                <td style="max-width: 50px; min-width: 30px">${od.order}</td>
+                <td style="max-width: 100px">${od.product}</td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>500000</td>
-                <td>27</td>
-                <td style="max-width: 50px; min-width: 30px">A12c</td>
-                <td style="max-width: 100px">123</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>500000</td>
-                <td>27</td>
-                <td style="max-width: 50px; min-width: 30px">A12c</td>
-                <td style="max-width: 100px">123</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>500000</td>
-                <td>27</td>
-                <td style="max-width: 50px; min-width: 30px">A12c</td>
-                <td style="max-width: 100px">123</td>
-              </tr>
+              	</c:forEach>
             </tbody>
           </table>
         </div>

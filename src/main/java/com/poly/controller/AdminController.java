@@ -7,8 +7,11 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +27,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.poly.DAO.AccountDAO;
 import com.poly.DAO.CategoryDAO;
+import com.poly.DAO.OrderDAO;
+import com.poly.DAO.OrderDetailDAO;
 import com.poly.DAO.ProductDAO;
+import com.poly.bean.SessionService;
 import com.poly.model.Account;
 import com.poly.model.Category;
+import com.poly.model.Order;
+import com.poly.model.OrderDetail;
 import com.poly.model.Product;
 
+import jakarta.mail.Session;
 import jakarta.servlet.ServletContext;
 
 
@@ -45,7 +54,16 @@ public class AdminController {
 	AccountDAO accDao;
 	
 	@Autowired
+	OrderDAO oDao;
+	
+	@Autowired
+	OrderDetailDAO odDao;
+	
+	@Autowired
 	ServletContext app;
+	
+	@Autowired
+	SessionService session;
 	
 	@RequestMapping("/admin/index")
 	public String Admin() {
@@ -69,15 +87,64 @@ public class AdminController {
 		model.addAttribute("userItems", accDao.findAll());
 		return "Admin/user/list-user";
 	}
+	
+	@GetMapping("/admin/user/delete")
+	public String UserDelete(Model model, @RequestParam("username") String username, @ModelAttribute("userItem") Account acc) {
+		
+		
+			accDao.deleteById(username);
+			model.addAttribute("success_product", "Delete success!");
+		
+		model.addAttribute("productItems", pDao.findAll());
+		return "Admin/user/list-user";
+	}
+	
+	
 
 	// don hang---------------------------
 	@RequestMapping("/admin/order/order")
-	public String OrderList() {
+	public String OrderList(Model model, @ModelAttribute("otherItem") Order o) {		
+		model.addAttribute("OrderItems", oDao.findAll());
 		return "Admin/order/order";
 	}
-
+	
+	
+//	@PostMapping("/admin/order/update")
+//	public String OrderUpdate(Model model,@Validated @ModelAttribute("ortherItem") Order o, BindingResult result) {
+//		if (!result.hasErrors()) {
+//			if(oDao.findById(o.getId()).isEmpty())
+//				model.addAttribute("error_product", "Id không tồn tại!");
+//			else {
+//			oDao.save(o);
+//			model.addAttribute("success_product", "Update success!");
+//			}
+//		}	
+//		return "Admin/order/order";
+//	}
+	
+	
+//	@GetMapping("/admin/order/edit")
+//	public String OrderEdit(Model model, @RequestParam("id") Long id, @ModelAttribute("ortherItem") Order o) {
+//		if(oDao.findById(o.getId()).isEmpty())
+//			return "redirect:/admin/order/order";
+//		else {
+//			Order order = oDao.findById(id).get();
+//			o.setId(order.getId());
+//			o.setStatus(order.getStatus().toString());
+//			
+//			
+//		}
+//		model.addAttribute("ortherItems", oDao.findAll());
+//		return "Admin/order/order";
+//	}
+	
+	
+	
+	//------------orderdetail-------------------------
+	
 	@RequestMapping("/admin/order/detailorder")
-	public String DetailOrder() {
+	public String DetailOrder(Model model, @ModelAttribute("otherDetailItem") OrderDetail o) {
+		model.addAttribute("otherDetailItems", odDao.findAll());
 		return "Admin/order/detail-order";
 	}
 
@@ -161,23 +228,23 @@ public class AdminController {
 		return "Admin/product/form-product";
 	}
 	
-	@PostMapping("/admin/product/delete")
-	public String ProductDelete(Model model,@ModelAttribute("productItem") Product sp) {
-		if(!sp.getId().equals("")) {
-			if(pDao.findById(sp.getId()).isEmpty())
-				model.addAttribute("error_product", "Id không tồn tại!");
-			else {
-				pDao.deleteById(sp.getId());
-				model.addAttribute("success_product", "Delete success!");
-			}
-		}
-		else
-		{
-			model.addAttribute("error_product", "Id không được rỗng");
-		}
-		model.addAttribute("productItems", pDao.findAll());
-		return "Admin/product/form-product";
-	}
+//	@PostMapping("/admin/product/delete")
+//	public String ProductDelete(Model model,@ModelAttribute("productItem") Product sp) {
+//		if(!sp.getId().equals("")) {
+//			if(pDao.findById(sp.getId()).isEmpty())
+//				model.addAttribute("error_product", "Id không tồn tại!");
+//			else {
+//				pDao.deleteById(sp.getId());
+//				model.addAttribute("success_product", "Delete success!");
+//			}
+//		}
+//		else
+//		{
+//			model.addAttribute("error_product", "Id không được rỗng");
+//		}
+//		model.addAttribute("productItems", pDao.findAll());
+//		return "Admin/product/form-product";
+//	}
 	
 	@GetMapping("/admin/product/edit")
 	public String ProductEdit(Model model, @RequestParam("id") Integer id, @ModelAttribute("productItem") Product sp) {
@@ -210,15 +277,61 @@ public class AdminController {
 		return "Admin/product/form-product";
 	}
 	
+//	@RequestMapping("/admin/product/searchproduct")
+//	public String searchAndPage(Model model, @RequestParam("keywords") Optional<String> kw,
+//			@RequestParam("p") Optional<Integer> p) {
+//		String kwords = kw.orElse(session.get("keywords", ""));
+//		session.set("keywords", kwords);
+//		Pageable pageable = PageRequest.of(p.orElse(0), 5);
+//		Page<Product> page = pDao.findByKeywords("%" + kwords + "%", pageable);
+//		model.addAttribute("page", page);
+//		return "Admin/product/form-product";
+//	}
+//	
 	
 	
 	
-	// -----------------------------
+	// -------------danh mục----------------
 	@RequestMapping("/admin/form/danhmuc")
-	public String Danhmuc() {
+	public String Danhmuc(Model model, @ModelAttribute("categoryItem") Category ca) {
+		ca.setId(null);
+		ca.setName(null);
+		ca.setImage(null);
+		model.addAttribute("categoryItems", caDao.findAll());
 		return "Admin/danhmuc/danhmuc";
 	}
 
+	@PostMapping("/admin/form/categorycreate")
+	public String CategoryCreate(Model model,@Validated @ModelAttribute("categoryItem") Category ca, BindingResult result, @RequestParam("img") MultipartFile file) throws IllegalStateException, IOException{
+		
+		if(!file.isEmpty()) {
+			System.out.println("hello");
+			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+		try {
+			Path path = Paths.get(app.getRealPath("\\views\\image\\category\\" + fileName));
+			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+			String dd = file.getOriginalFilename();
+			ca.setImage(dd);
+			if (!result.hasErrors()) {
+				caDao.save(ca);
+				model.addAttribute("success_category", "Create success!");		
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		model.addAttribute("categoryItems", caDao.findAll());
+		}
+		return "Admin/danhmuc/danhmuc";
+		
+	}
+	
+	
+	
+	
+	
+	//--------------------------------------
 	@RequestMapping("/admin/product/formsize")
 	public String FormSize() {
 		return "Admin/product/form-size";
