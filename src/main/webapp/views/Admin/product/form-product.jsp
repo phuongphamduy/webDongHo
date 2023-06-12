@@ -20,7 +20,7 @@
 	<jsp:include page="/views/Admin/Layout/sidebar.jsp"></jsp:include>
 
 	<form:form action="/admin/product/create" modelAttribute="productItem"
-		method="post" class="me-auto ms-auto w-50 mt-3 row">
+		method="post" class="me-auto ms-auto w-50 mt-3 row" enctype="multipart/form-data">
 		<div style="margin-left: 15%; padding: 10px">
 			<span style="font-size: 40px">Form Sản phẩm</span>
 
@@ -66,7 +66,7 @@
 <%-- 							<form:errors path="category" class="form-text text-danger" /> --%>
 							<form:select path="category" class="form-select"
 								aria-label="Default select example">
-								<c:forEach items="${listCategorys}" var="f">
+								<c:forEach items="${listCategory}" var="f">
 									<form:option value="${f}">${f}</form:option>
 								</c:forEach>
 							</form:select>
@@ -76,11 +76,7 @@
 						</div>
 						<div class="col-md-6">
 							<label for="image" class="form-label"><b>Chọn hình</b></label>
-							<form:input type="file" class="form-control" path="image" />
-							<form:errors path="image" class="form-text text-danger" />
-							<c:if test="${not empty error_product}">
-								<div class="form-text text-danger">${error_product}</div>
-							</c:if>
+							<input type="file" class="form-control" name="img" />
 						</div>
 
 						<div class="col-md-6">

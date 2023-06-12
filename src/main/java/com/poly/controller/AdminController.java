@@ -102,24 +102,23 @@ public class AdminController {
 	}
 	
 	@ModelAttribute("listCategory")
-	public List<String> getFaculties(Model model, @ModelAttribute("listCategory") Category ca){
-		model.addAttribute("listCategorys", caDao.findAll());
-
-		return Arrays.asList();
+	public List<Category> getFaculties(){
+//		model.addAttribute("listCategorys", caDao.findAll());
+		return caDao.findAll();
 	}
 
 	@PostMapping("/admin/product/create")
-	public String ProductCreate(Model model,@Validated @ModelAttribute("productItem") Product sp, BindingResult result, @RequestParam("image") MultipartFile file) throws IllegalStateException, IOException{
+	public String ProductCreate(Model model,@Validated @ModelAttribute("productItem") Product sp, BindingResult result, @RequestParam("img") MultipartFile file) throws IllegalStateException, IOException{
 		
 		if(!file.isEmpty()) {
+			System.out.println("hello");
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
 		try {
-			System.out.println(app.getRealPath(fileName));
-			Path path = Paths.get(app.getRealPath(fileName));
+			Path path = Paths.get("C:\\phuong\\repository\\webDongHo\\src\\main\\webapp\\views\\image\\product\\" + fileName);
 			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			String dd = file.getOriginalFilename();
-			
+			sp.setImage(dd);
 			if (!result.hasErrors()) {
 				pDao.save(sp);
 				model.addAttribute("success_product", "Create success!");
