@@ -35,12 +35,12 @@
 						<td><b>Status</b></td>
 					</thead>
 					<tbody>
-						<c:forEach items="${orderItems}" var="o">
+						<c:forEach items="${OrderItems}" var="o">
 							<tr class="table-active">
 								<td>${o.id}</td>
-								<td>${o.username}</td>
+								<td>${o.account.username}</td>
 								<td><fmt:formatDate value="${o.createdate}" pattern="dd-MM-yyyy" /></td>
-								<td>${o.addresss}</td>
+								<td>${o.address}</td>
 								<td>${o.phone}</td>
 								<td>${o.fullname}</td>
 								<td>${o.email}</td>
