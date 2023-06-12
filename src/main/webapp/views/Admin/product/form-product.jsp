@@ -131,7 +131,7 @@
 								<td>${sp.discount }</td>
 								<td>${sp.category.id }</td>
 								<td><img src="../../image/product/${sp.image}" height="50px" width="70px" alt=""></td>
-								<td>${sp.createdate}</td>
+								<td><fmt:formatDate value="${sp.createdate}" pattern="dd-MM-yyyy" /></td>
 								<td>
 									<button href="/admin/product/edit?id=${sp.id}"
 										class="btn btn-warning">Edit</button>
