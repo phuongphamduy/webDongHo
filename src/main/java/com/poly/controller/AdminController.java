@@ -71,23 +71,6 @@ public class AdminController {
 	}
 
 	
-
-	
-	
-	
-	
-	
-
-	
-	
-	
-
-	
-	
-
-	
-	
-	
 	
 
 	@RequestMapping("/admin/order/delivered")
