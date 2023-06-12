@@ -103,7 +103,7 @@ public class AdminController {
 	
 	@ModelAttribute("listCategory")
 	public List<String> getFaculties(Model model, @ModelAttribute("listCategory") Category ca){
-		model.addAttribute("listCategorys", pDao.findAll());
+		model.addAttribute("listCategorys", caDao.findAll());
 
 		return Arrays.asList();
 	}

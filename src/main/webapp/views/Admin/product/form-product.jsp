@@ -67,7 +67,7 @@
 							<form:select path="category" class="form-select"
 								aria-label="Default select example">
 								<c:forEach items="${listCategorys}" var="f">
-									<form:option value="${f.category}">${f.category}</form:option>
+									<form:option value="${f}">${f}</form:option>
 								</c:forEach>
 							</form:select>
 							<c:if test="${not empty error_product}">
