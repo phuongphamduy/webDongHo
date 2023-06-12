@@ -33,7 +33,6 @@ public class Product implements Serializable {
 	Integer id;
 	@NotBlank
 	String name;
-	@NotBlank
 	String image;
 	@NotNull
 	Double price;

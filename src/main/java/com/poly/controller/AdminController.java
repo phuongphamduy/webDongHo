@@ -136,7 +136,6 @@ public class AdminController {
 	@PostMapping("/admin/product/update")
 	public String ProductUpdate(Model model,@Validated @ModelAttribute("productItem") Product sp, BindingResult result, @RequestParam("img") MultipartFile file) throws IllegalStateException, IOException {
 		if(!file.isEmpty()) {
-			System.out.println("hello");
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
 		try {
@@ -144,6 +143,7 @@ public class AdminController {
 			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			String dd = file.getOriginalFilename();
 			sp.setImage(dd);
+			System.out.println(result.toString());
 			if (!result.hasErrors()) {
 				if(pDao.findById(sp.getId()).isEmpty())
 					model.addAttribute("error_product", "Id không tồn tại!");
@@ -152,12 +152,13 @@ public class AdminController {
 				model.addAttribute("success_product", "Update success!");
 				}
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
-		model.addAttribute("productItems", pDao.findAll());
 		}
+		}
+		model.addAttribute("productItems", pDao.findAll());
+		
 		return "Admin/product/form-product";
 	}
 	
