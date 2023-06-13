@@ -42,22 +42,11 @@ import jakarta.servlet.ServletContext;
 
 
 @Controller
-public class AdminController {
+public class AdminOrderController {
+	
 	
 	@Autowired
-	ProductDAO pDao;
-	
-	@Autowired
-	CategoryDAO caDao;
-	
-	@Autowired
-	AccountDAO accDao;
-	
-	@Autowired
-	OrderDAO oDao;
-	
-	@Autowired
-	OrderDetailDAO odDao;
+	OrderDAO oDao;	
 	
 	@Autowired
 	ServletContext app;
@@ -65,33 +54,47 @@ public class AdminController {
 	@Autowired
 	SessionService session;
 	
-	@RequestMapping("/admin/index")
-	public String Admin() {
-		return "Admin/index";
-	}
 
+
+	// don hang---------------------------
+	@RequestMapping("/admin/order/order")
+	public String OrderList(Model model, @ModelAttribute("otherItem") Order o) {		
+		model.addAttribute("OrderItems", oDao.findAll());
+		return "Admin/order/order";
+	}
 	
 	
-
-	@RequestMapping("/admin/order/delivered")
-	public String orderDelivered() {
-		return "Admin/order/order-delivered-list";
-	}
-
+//	@PostMapping("/admin/order/update")
+//	public String OrderUpdate(Model model,@Validated @ModelAttribute("ortherItem") Order o, BindingResult result) {
+//		if (!result.hasErrors()) {
+//			if(oDao.findById(o.getId()).isEmpty())
+//				model.addAttribute("error_product", "Id không tồn tại!");
+//			else {
+//			oDao.save(o);
+//			model.addAttribute("success_product", "Update success!");
+//			}
+//		}	
+//		return "Admin/order/order";
+//	}
 	
-	@RequestMapping("/admin/product/formsize")
-	public String FormSize() {
-		return "Admin/product/form-size";
-	}
-
-	@RequestMapping("/admin/thongke/tkproduct")
-	public String ThongkeProduct() {
-		return "Admin/thongke/thongke-product";
-	}
-
-	@RequestMapping("/admin/thongke/tkorder")
-	public String ThongkeOrder() {
-		return "Admin/thongke/thongke-order";
-	}
+	
+//	@GetMapping("/admin/order/edit")
+//	public String OrderEdit(Model model, @RequestParam("id") Long id, @ModelAttribute("ortherItem") Order o) {
+//		if(oDao.findById(o.getId()).isEmpty())
+//			return "redirect:/admin/order/order";
+//		else {
+//			Order order = oDao.findById(id).get();
+//			o.setId(order.getId());
+//			o.setStatus(order.getStatus().toString());
+//			
+//			
+//		}
+//		model.addAttribute("ortherItems", oDao.findAll());
+//		return "Admin/order/order";
+//	}
+	
+	
+	
+	
 
 }

@@ -23,4 +23,10 @@ public class Category implements Serializable {
 	String image;
 	@OneToMany(mappedBy="category")
 	List<Product> products;
+	
+	@Override
+	public String toString() {
+		return this.name;
+		
+	}
 }

@@ -42,22 +42,14 @@ import jakarta.servlet.ServletContext;
 
 
 @Controller
-public class AdminController {
+public class AdminCategoryController {
 	
-	@Autowired
-	ProductDAO pDao;
+	
 	
 	@Autowired
 	CategoryDAO caDao;
 	
-	@Autowired
-	AccountDAO accDao;
 	
-	@Autowired
-	OrderDAO oDao;
-	
-	@Autowired
-	OrderDetailDAO odDao;
 	
 	@Autowired
 	ServletContext app;
@@ -65,33 +57,45 @@ public class AdminController {
 	@Autowired
 	SessionService session;
 	
-	@RequestMapping("/admin/index")
-	public String Admin() {
-		return "Admin/index";
+	
+	// -------------danh mục----------------
+	@RequestMapping("/admin/form/danhmuc")
+	public String Danhmuc(Model model, @ModelAttribute("categoryItem") Category ca) {
+		ca.setId(null);
+		ca.setName(null);
+		ca.setImage(null);
+		model.addAttribute("categoryItems", caDao.findAll());
+		return "Admin/danhmuc/danhmuc";
 	}
 
+	@PostMapping("/admin/form/categorycreate")
+	public String CategoryCreate(Model model,@Validated @ModelAttribute("categoryItem") Category ca, BindingResult result, @RequestParam("img") MultipartFile file) throws IllegalStateException, IOException{
+		
+		if(!file.isEmpty()) {
+		
+			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+		try {
+			Path path = Paths.get(app.getRealPath("\\views\\image\\category\\" + fileName));
+			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+			String dd = file.getOriginalFilename();
+			ca.setImage(dd);
+			if (!result.hasErrors()) {
+				caDao.save(ca);
+				model.addAttribute("success_category", "Create success!");		
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		model.addAttribute("categoryItems", caDao.findAll());
+		}
+		return "Admin/danhmuc/danhmuc";
+		
+	}
 	
 	
-
-	@RequestMapping("/admin/order/delivered")
-	public String orderDelivered() {
-		return "Admin/order/order-delivered-list";
-	}
-
 	
-	@RequestMapping("/admin/product/formsize")
-	public String FormSize() {
-		return "Admin/product/form-size";
-	}
-
-	@RequestMapping("/admin/thongke/tkproduct")
-	public String ThongkeProduct() {
-		return "Admin/thongke/thongke-product";
-	}
-
-	@RequestMapping("/admin/thongke/tkorder")
-	public String ThongkeOrder() {
-		return "Admin/thongke/thongke-order";
-	}
+	
 
 }

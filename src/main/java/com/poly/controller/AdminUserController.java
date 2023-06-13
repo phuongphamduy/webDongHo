@@ -42,22 +42,14 @@ import jakarta.servlet.ServletContext;
 
 
 @Controller
-public class AdminController {
+public class AdminUserController {
 	
-	@Autowired
-	ProductDAO pDao;
 	
-	@Autowired
-	CategoryDAO caDao;
 	
 	@Autowired
 	AccountDAO accDao;
 	
-	@Autowired
-	OrderDAO oDao;
 	
-	@Autowired
-	OrderDetailDAO odDao;
 	
 	@Autowired
 	ServletContext app;
@@ -65,33 +57,26 @@ public class AdminController {
 	@Autowired
 	SessionService session;
 	
-	@RequestMapping("/admin/index")
-	public String Admin() {
-		return "Admin/index";
+
+
+	// user------------------------------
+	@RequestMapping("/admin/user/formuser")
+	public String FormUser() {
+		return "Admin/user/formUser";
 	}
 
+	//--------------------------------
+	@RequestMapping("/admin/user/listuser")
+	public String ListUser(Model model, @ModelAttribute("userItem") Account acc) {
+		acc.setUsername(null);
+		acc.setPassword(null);
+		acc.setFullname(null);
+		acc.setEmail(null);
+		acc.setPhoto(null);
+		model.addAttribute("userItems", accDao.findAll());
+		return "Admin/user/list-user";
+	}
 	
 	
-
-	@RequestMapping("/admin/order/delivered")
-	public String orderDelivered() {
-		return "Admin/order/order-delivered-list";
-	}
-
-	
-	@RequestMapping("/admin/product/formsize")
-	public String FormSize() {
-		return "Admin/product/form-size";
-	}
-
-	@RequestMapping("/admin/thongke/tkproduct")
-	public String ThongkeProduct() {
-		return "Admin/thongke/thongke-product";
-	}
-
-	@RequestMapping("/admin/thongke/tkorder")
-	public String ThongkeOrder() {
-		return "Admin/thongke/thongke-order";
-	}
 
 }
