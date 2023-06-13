@@ -21,7 +21,7 @@
 <body>
 	<fmt:setLocale value="vi_VN" />
 	<div class="container">
-		<header class="row align-item">
+		<!-- <header class="row align-item">
 			<div class="col-4 m-auto">
 				<a href="/form/${link }" class="login"> <i
 					class="fa-solid fa-user"></i> ${sign }
@@ -59,28 +59,10 @@
 					</a>
 				</div>
 			</div>
-		</header>
-		<nav>
-			<div class="row">
-				<div class="col d-flex justify-content-center">
-					<ul class="nav-list">
-						<li class="nav-item"><a href="/" class="nav-link">Trang
-								chủ</a></li>
-						<li class="nav-item"><a href="" class="nav-link">Sản phẩm
-								<i class="fa-solid fa-chevron-down"></i>
-						</a>
-							<ul class="subnav-list">
-								<li class="subnav-item"><a href="" class="subnav-link">Xiaomi
-										Watch</a></li>
-								<li class="subnav-item"><a href="" class="subnav-link">Apple
-										Watch</a></li>
-							</ul></li>
-						<li class="nav-item"><a href="" class="nav-link">Tin tức</a></li>
-						<li class="nav-item"><a href="" class="nav-link">Liên hệ</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		</header> -->
+		<jsp:include page="/views/Layout/header.jsp"></jsp:include>
+		<jsp:include page="/views/Layout/navbar.jsp"></jsp:include>
+		
 	</div>
 	<div class="container">
 		<div class="cart">
@@ -115,7 +97,10 @@
 		</div>
 
 	</div>
-
+	<footer style="margin-top: 30px;">
+		<!-- footer -->
+		<jsp:include page="/views/Layout/footer.jsp"></jsp:include>	
+	</footer>
 </body>
 
 </html>

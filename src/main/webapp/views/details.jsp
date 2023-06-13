@@ -24,67 +24,9 @@
 <body>
 	<fmt:setLocale value="vi_VN" />
 	<div class="container">
-		<header class="row align-item">
-			<div class="col-4 m-auto">
-				<a href="/form/${link }" class="login"> <i class="fa-solid fa-user"></i> ${sign }
-				</a>
-				<span class="contact-number">
-					Hotline <span>09335425686</span>
-				</span>
-			</div>
-			<div class="col-3 text-center">
-				<img src="../views/image/logo.png" class="logo" alt="">
-			</div>
-			<div class="col-5 d-flex align-items-center justify-content-end">
-
-				<div class="header-search">
-					<p class="header-search-text">
-						<i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm
-					</p>
-					<form action="" class="header-search-form">
-						<div class="input-group mb-3" style="width: 250px">
-							<input type="text" class="form-control" placeholder="Tìm kiếm"
-								aria-label="Recipient's username"
-								aria-describedby="button-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="button"
-									id="button-addon2">
-									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-
-				<div class="header-cart">
-					<a href="/cart" class="header-cart-text">
-						<i class="fa-solid fa-cart-shopping"></i>Giỏ hàng <span
-							class="header-cart-qty">(${count })</span>
-					</a>
-				</div>
-			</div>
-		</header>
-		<nav>
-			<div class="row">
-				<div class="col d-flex justify-content-center">
-					<ul class="nav-list">
-						<li class="nav-item"><a href="/" class="nav-link">Trang
-								chủ</a></li>
-						<li class="nav-item"><a href="" class="nav-link">Sản phẩm
-								<i class="fa-solid fa-chevron-down"></i>
-						</a>
-							<ul class="subnav-list">
-								<li class="subnav-item"><a href="" class="subnav-link">Xiaomi
-										Watch</a></li>
-								<li class="subnav-item"><a href="" class="subnav-link">Apple
-										Watch</a></li>
-							</ul></li>
-						<li class="nav-item"><a href="" class="nav-link">Tin tức</a></li>
-						<li class="nav-item"><a href="" class="nav-link">Liên hệ</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		<jsp:include page="/views/Layout/header.jsp"></jsp:include>
+		<jsp:include page="/views/Layout/navbar.jsp"></jsp:include>
+		
 	</div>
 	<div class="container">
 		<div class="product">
@@ -199,53 +141,8 @@
 		</div>
 	</div>
 	<footer>
-		<div class="container">
-			<div
-				class="row footer-content justify-content-between align-item-center">
-				<div class="col-4 m-auto">
-					<div class="footer-nav">
-						<h3>Thông tin cửa hàng</h3>
-						<ul class="footer-list">
-							<li class="footer-item">Tự soạn thảo 1</li>
-							<li class="footer-item">Tự soạn thảo 1</li>
-							<li class="footer-item">Tự soạn thảo 1</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-4 m-auto">
-					<div class="footer-nav">
-						<h3>Delta Watch</h3>
-						<ul class="footer-list">
-							<li class="footer-item">Địa chỉ: Quận Tân Bình, HCM</li>
-							<li class="footer-item">Điện thoại: 09XXXXXXXX</li>
-							<li class="footer-item">Email: donghoDW@fpt.edu.vn</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-4 m-auto">
-					<div class="footer-nav">
-						<h3>Theo dõi chúng tôi</h3>
-						<iframe
-							src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcongtywebvua%2F&tabs&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1601131973565308"
-							width="340" height="130" style="border: none; overflow: hidden"
-							scrolling="no" frameborder="0" allowfullscreen="true"
-							allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-end">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<p class="d-flex m-auto p-3">
-							Copyright &copy 2019 <span style="color: #05c3ff;">Delta
-								Watch</span>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+		<!-- footer -->
+		<jsp:include page="/views/Layout/footer.jsp"></jsp:include>	
 	</footer>
 	<script>
 		let qty = document.getElementById("qty-input");

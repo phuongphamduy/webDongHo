@@ -54,6 +54,7 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
             height: 80px;
           "
         >
+          <i class="fa-solid fa-user-secret" style="margin: 10px"></i>
           Admin
         </h3>
         <hr />
