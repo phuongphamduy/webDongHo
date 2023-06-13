@@ -20,8 +20,27 @@
 	<div class="container">
 		<header class="row align-item">
 			<div class="col-4 m-auto">
-				<a href="/form/${link }" class="login"> <i
-					class="fa-solid fa-user"></i> ${sign }
+				<c:if test="${sessionScope.user == null }">
+					<a href="/form/${link}" class="login"> <i
+						class="fa-solid fa-user"></i> ${sign }
+					</a>
+				</c:if>
+				<c:if test="${sessionScope.user != null }">
+					<span class="login"> <i class="fa-solid fa-user"></i> Tài
+						khoản <i class="fa-solid fa-chevron-down"></i>
+						<ul class="subnav-login">
+							<li class="subnav-login-item"><a href="/hoadon"
+								class="subnav-login-link">Hóa đơn</a></li>
+							<c:if test="${sessionScope.user.admin }">
+								<li class="subnav-login-item"><a href="/admin/index"
+									class="subnav-login-link">Trang quản trị</a></li>
+							</c:if>
+							<li class="subnav-login-item"><a href="/form/${link }"
+								class="subnav-login-link">${sign }</a></li>
+						</ul>
+					</span>
+				</c:if>
+
 				</a> <span class="contact-number"> Hotline <span>09335425686</span>
 				</span>
 			</div>
