@@ -77,6 +77,20 @@ public class AdminUserController {
 		return "Admin/user/list-user";
 	}
 	
+	@PostMapping("/admin/user/update")
+	public String update(@RequestParam(value = "isAdmin", required = false) String admin, @RequestParam("id") String username) {
+		Boolean admin1 = false;
+		if(admin == null) {
+			admin1 = false;
+		}else {
+			admin1 = Boolean.valueOf(admin);
+		}
+		Account acc = accDao.findById(username).get();
+		acc.setAdmin(admin1);
+		accDao.save(acc);
+		return "redirect:/admin/user/listuser";
+	}
+	
 	
 
 }

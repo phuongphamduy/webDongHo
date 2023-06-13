@@ -54,6 +54,9 @@ public class AdminOrderController {
 	@Autowired
 	SessionService session;
 	
+	@Autowired
+	OrderDetailDAO ddao;
+	
 
 
 	// don hang---------------------------
@@ -64,34 +67,19 @@ public class AdminOrderController {
 	}
 	
 	
-//	@PostMapping("/admin/order/update")
-//	public String OrderUpdate(Model model,@Validated @ModelAttribute("ortherItem") Order o, BindingResult result) {
-//		if (!result.hasErrors()) {
-//			if(oDao.findById(o.getId()).isEmpty())
-//				model.addAttribute("error_product", "Id không tồn tại!");
-//			else {
-//			oDao.save(o);
-//			model.addAttribute("success_product", "Update success!");
-//			}
-//		}	
-//		return "Admin/order/order";
-//	}
-	
-	
-//	@GetMapping("/admin/order/edit")
-//	public String OrderEdit(Model model, @RequestParam("id") Long id, @ModelAttribute("ortherItem") Order o) {
-//		if(oDao.findById(o.getId()).isEmpty())
-//			return "redirect:/admin/order/order";
-//		else {
-//			Order order = oDao.findById(id).get();
-//			o.setId(order.getId());
-//			o.setStatus(order.getStatus().toString());
-//			
-//			
-//		}
-//		model.addAttribute("ortherItems", oDao.findAll());
-//		return "Admin/order/order";
-//	}
+	@PostMapping("/admin/order/update")
+	public String OrderUpdate(@RequestParam(value = "isStatus", required= false) String status, @RequestParam("id") Long id) {
+		Boolean status1 = false;
+		if(status == null) {
+			status1 = false;
+		}else {
+			status1 = Boolean.valueOf(status);
+		}
+		Order o = oDao.findById(id).get();
+		o.setStatus(status1);
+		oDao.save(o);
+		return "redirect:/admin/order/order";
+	}
 	
 	
 	

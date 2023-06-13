@@ -47,12 +47,12 @@
 								<td>${o.email}</td>
 								<td><fmt:formatNumber pattern="#,##0" value="${o.price }" /> VNĐ</td>
 								<td>
-									<form class="text-center" action="" action="post">
-										<input type="checkbox" ${o.status ? 'checked' : '' } onChange="this.form.submit()">
+									<form class="text-center" action="/admin/order/update?id=${o.id }" method="post">
+										<input name="isStatus" value="${!o.status }" type="checkbox" ${o.status ? 'checked' : '' } onChange="this.form.submit()">
 									</form>
 								</td>
 								<td>
-									<a href="" class="btn btn-primary">Chi tiết</a>
+									<a href="/admin/order/detail?id=${o.id }" class="btn btn-primary">Chi tiết</a>
 								</td>
 								
 							</tr>

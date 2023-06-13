@@ -43,8 +43,8 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                 <td>${acc.fullname}</td>
                 <td>${acc.email}</td>
                 <td>
-                	<form class="text-center" action="" method="post">
-                		<input type="checkbox" ${acc.admin ? 'checked' : '' } onChange="this.form.submit()">
+                	<form class="text-center" action="/admin/user/update?id=${acc.username }" method="post">
+                		<input name="isAdmin" value="${!acc.admin }" type="checkbox" ${acc.admin ? 'checked' : '' } onChange="this.form.submit()">
                 	</form>
                 </td>       
               </tr>
