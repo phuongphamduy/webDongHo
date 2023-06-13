@@ -32,7 +32,8 @@
 						<td><b>Họ và tên</b></td>
 						<td><b>Email</b></td>
 						<td><b>Giá</b></td>
-						<td><b>Status</b></td>
+						<td><b>Đã thanh toán</b></td>
+						<td><b>Chi tiết</b></td>
 					</thead>
 					<tbody>
 						<c:forEach items="${OrderItems}" var="o">
@@ -45,15 +46,19 @@
 								<td>${o.fullname}</td>
 								<td>${o.email}</td>
 								<td><fmt:formatNumber pattern="#,##0" value="${o.price }" /> VNĐ</td>
-								<td>${o.status}</td>
+								<td>
+									<form class="text-center" action="" action="post">
+										<input type="checkbox" ${o.status ? 'checked' : '' } onChange="this.form.submit()">
+									</form>
+								</td>
+								<td>
+									<a href="" class="btn btn-primary">Chi tiết</a>
+								</td>
+								
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<div>
-					<a href="/admin/order/detailorder"><button
-							class="btn btn-primary">Chi tiết</button> </a>
-				</div>
 			</div>
 		</div>
 		<jsp:include page="/views/Admin/Layout/footer.jsp"></jsp:include>

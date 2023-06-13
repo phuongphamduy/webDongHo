@@ -32,8 +32,8 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
               <td><b>Tài khoản</b></td>
               <td><b>Mật khẩu</b></td>
               <td><b>Fullname</b></td>
-              <td><b>Email</b></td>
-              <td><b>Photo</b></td>       
+              <td><b>Email</b></td>   
+              <td><b>Admin</b></td>  
             </thead>
             <tbody style="text-align: center">
             <c:forEach items="${userItems}" var="acc">
@@ -42,7 +42,11 @@ prefix="c"%> <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
                 <td>${acc.password}</td>
                 <td>${acc.fullname}</td>
                 <td>${acc.email}</td>
-                <td><img src="${pageContext.request.contextPath }/views/image/category/${acc.photo}" height="50px" width="70px" alt=""></td>        
+                <td>
+                	<form class="text-center" action="" method="post">
+                		<input type="checkbox" ${acc.admin ? 'checked' : '' } onChange="this.form.submit()">
+                	</form>
+                </td>       
               </tr>
               	</c:forEach>
            
